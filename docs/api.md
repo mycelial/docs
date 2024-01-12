@@ -252,7 +252,7 @@ title: APIs
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>(fetch all active pipeline specifications)</code></summary>
+ <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>fetch all active pipeline specifications</code></summary>
 
 ##### Parameters
 
