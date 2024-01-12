@@ -11,4 +11,4 @@ are the edge data movement platform.
 
 New to Mycelial?
 
-Try our tutorial.
+Try our [tutorial](./tutorial.md).
