@@ -45,4 +45,4 @@ Once the data pipeline is published, the pertinent daemons commence the data tra
 
 ## Practical Demonstration
 
-For an applied learning experience, Mycelial offers a beginner's tutorial.
+For an applied learning experience, Mycelial offers a beginner's [tutorial](./tutorial.md).
