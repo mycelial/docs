@@ -16,7 +16,7 @@ sidebar_position: 4
   <summary>What data sources/destinations does Mycelial offer connectors for?</summary>
 
   You can see the sources and destinations that Mycelial supports 
-  [here](../sources)
+  here in the documentation under sources and destinations.
 
 </details>
 
