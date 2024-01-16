@@ -141,7 +141,7 @@ type = "excel_connector"
 display_name = "Excel People Source"
 path = "people.xlsx" 
 strict = false
-sheets = "poeple"
+sheets = "people"
 
 [[destinations]]
 type = "snowflake"
