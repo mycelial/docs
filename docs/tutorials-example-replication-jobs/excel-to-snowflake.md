@@ -31,47 +31,65 @@ Follow the below instructions to install the Mycelial CLI:
 <details>
   <summary>Linux</summary>
 
-  <h4>Debian Based Linux x86_64</h4>
+  <details>
+  <summary>Debian Based Linux x86_64</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_amd64.deb --output mycelial_amd64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.deb --output mycelial_amd64.deb
   dpkg -i ./mycelial_amd64.deb
   ```
 
-  <h4>Debian Based Linux ARM64</h4>
+  </details>
+
+  <details>
+  <summary>Debian Based Linux ARM64</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_arm64.deb --output mycelial_arm64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.deb --output mycelial_arm64.deb
   dpkg -i ./mycelial_arm64.deb
   ```
 
-  <h4>Debian Based Linux ARM</h4>
+  </details>
+
+  <details>
+  <summary>Debian Based Linux ARM</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_armhf.deb --output mycelial_armhf.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.deb --output mycelial_armhf.deb
   dpkg -i ./mycelial_armhf.deb
   ```
 
-  <h4>Redhat Based Linux x86_64</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux x86_64</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.x86_64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.rpm 
   ```
 
-  <h4>Redhat Based Linux ARM64</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux ARM64</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.arm64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.rpm 
   ```
 
-  <h4>Redhat Based Linux ARM</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux ARM</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.armhf.rpm
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.rpm
   ```
 
+  </details>
 
 </details>
+
 
 ## Create a demo directory
 
