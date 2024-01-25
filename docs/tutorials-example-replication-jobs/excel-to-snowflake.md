@@ -124,8 +124,8 @@ daemon then you will be prompted with a series of questions. Press enter (⏎) t
 accept the default values as shown below:
 
 ```sh
-? Client Name: (My Client) › ⏎
-? Client ID: (client) › ⏎
+? Daemon Name: (My Daemon)› ⏎
+? Daemon ID: (daemon)› ⏎
 ? Server: (http://localhost:7777) › ⏎
 ```
 
