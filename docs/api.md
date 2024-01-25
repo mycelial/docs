@@ -5,7 +5,7 @@ title: APIs
 ---
 # Mycelial API
 
-## Pipeline Specification (workflows)
+## Workflow Specification
 
 <details>
   <summary><code>POST</code> <code><b>/api/pipe</b></code> <code>Creates a pipe config</code></summary>
@@ -249,7 +249,7 @@ echo -n 'token' | base64
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/api/pipe/[id]</b></code> <code>fetch a single pipeline specification by id</code></summary>
+ <summary><code>GET</code> <code><b>/api/pipe/[id]</b></code> <code>fetch a single workflow specification by id</code></summary>
 
 ##### Parameters
 
@@ -276,7 +276,7 @@ echo -n 'token' | base64
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>fetch all active pipeline specifications</code></summary>
+ <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>fetch all active workflow specifications</code></summary>
 
 ##### Parameters
 

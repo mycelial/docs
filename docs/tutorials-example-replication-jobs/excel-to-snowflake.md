@@ -6,7 +6,7 @@ title: Excel to Snowflake
 
 # Excel to Snowflake tutorial
 
-This tutorial will walk you through the process of setting up a data pipeline
+This tutorial will walk you through the process of setting up a data workflow
 that moves data from an Excel spreadsheet to Snowflake.
 
 ## Prerequisites
@@ -195,15 +195,15 @@ Now navigate to the Mycelial Control Plane in your browser at `http://localhost:
 When prompted for a username and password, enter `token` for for the username
 and leave the password field blank.
 
-### Create a data pipeline
+### Create a data workflow
 
-Now you'll need to create a data pipeline by doing the following steps:
+Now you'll need to create a data workflow by doing the following steps:
 
 1. Drag and drop the `Source: My Client - Excel People Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
 3. Drag and drop the `Destination: My Client - Snowflake Destination` node onto the canvas.
 4. Connect the `Excel People Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
-5. Lastly, press `Publish` to start the pipeline.
+5. Lastly, press `Publish` to start the workflow.
 
 ## Verify the data was replicated
 

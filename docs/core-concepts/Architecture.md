@@ -29,7 +29,7 @@ movement between various sources and destinations.
 - **Rust**: A multi-paradigm programming language emphasizing safety and performance.
 - **API**: Application Programming Interface.
 - **UI**: User Interface.
-- **Pipeline**: A data movement job, consisting of a source, destination, transforms and associated connectors.
+- **Workflow**: A data movement job (pipeline), consisting of a source, destination, transforms and associated connectors.
 
 ## Overview of Mycelial Software
 
@@ -38,13 +38,13 @@ movement between various sources and destinations.
 The Mycelial Software architecture is designed for robust and efficient data movement. At its core, it consists of Mycelial Daemons, the Mycelial Control Plane, Connectors and Transforms. Each component serves a distinct role:
 
 - **Mycelial Daemons**: These are responsible for the actual movement of data. They operate in the background, handling the transportation of data to and from various sources and destinations.
-- **Mycelial Control Plane**: This serves as the central command and control center for the Mycelial Daemons. It orchestrates the activities of the daemons, managing their pipelines, coordination, and monitoring.
+- **Mycelial Control Plane**: This serves as the central command and control center for the Mycelial Daemons. It orchestrates the activities of the daemons, managing their workflows, coordination, and monitoring.
 - **Connectors**: Functioning as interfaces, connectors enable the Mycelial Daemons to interact with different data sources and destinations. They are specifically tailored to handle various data formats and protocols.
 - **Transforms**: These are data processing functions that convert data formats as needed. They are used to ensure compatibility between the source and destination data formats.
 
 ### Component Interaction
 
-- **Daemon and Control Plane Interaction**: Mycelial Daemons communicate with the Control Plane to receive instructions and send operational data. This interaction is crucial for sharing available sources/destinations, creating pipelines, and error reporting.
+- **Daemon and Control Plane Interaction**: Mycelial Daemons communicate with the Control Plane to receive instructions and send operational data. This interaction is crucial for sharing available sources/destinations, creating workflows, and error reporting.
 - **Daemon and Connector Interaction**: Daemons utilize Connectors to access data sources and destinations. Connectors translate the data and protocol specifics, allowing Daemons to process and move data efficiently.
 - **Control Plane and Connector Management**: While the Control Plane does not directly interact with Connectors, it plays a vital role in their management. This includes creating, configuring, and updating Connectors as needed.
 
@@ -150,13 +150,13 @@ Connectors are equipped to handle various data formats and are capable of perfor
 Mycelial offers a framework for developing custom connectors, enabling users to extend the system's capabilities to new data sources and destinations. 
 
 ### Performance and Optimization
-Connector performance is critical for overall system efficiency. Mycelial connectors are optimized for high throughput and low latency, ensuring that data movement does not become a bottleneck in the data pipeline.
+Connector performance is critical for overall system efficiency. Mycelial connectors are optimized for high throughput and low latency, ensuring that data movement does not become a bottleneck in the data workflow.
 
 ------------
 ## Transforms
 
 ### Definition and Functionality
-Transforms in Mycelial Software are specialized functions integral to the data processing pipeline. Their primary role is to modify, process, and standardize data as it moves between sources and destinations, ensuring compatibility and maintaining data integrity.
+Transforms in Mycelial Software are specialized functions integral to the data processing workflow. Their primary role is to modify, process, and standardize data as it moves between sources and destinations, ensuring compatibility and maintaining data integrity.
 
 ### Types of Transforms
 
@@ -171,11 +171,11 @@ These transforms involve the removal of unwanted or redundant data, correction o
 
 ### Architecture and Integration
 
-#### Placement in Data Pipeline
-Transforms are strategically placed within the data pipeline, typically after data ingestion by the Mycelial Daemons and before data export to the destination.
+#### Placement in Data Workflow
+Transforms are strategically placed within the data workflow, typically after data ingestion by the Mycelial Daemons and before data export to the destination.
 
 #### Integration with Mycelial Daemons
-Transforms are tightly integrated with the Mycelial Daemons, allowing for seamless data processing within the movement pipeline.
+Transforms are tightly integrated with the Mycelial Daemons, allowing for seamless data processing within the movement workflow.
 
 ### Development and Customization
 
@@ -188,12 +188,12 @@ Transforms can be developed using the Python programming language.
 ### Performance Considerations
 
 #### Processing Efficiency
-Transforms are optimized for minimal impact on data processing time, ensuring that data transformation does not become a bottleneck in the pipeline.
+Transforms are optimized for minimal impact on data processing time, ensuring that data transformation does not become a bottleneck in the workflow.
 
 #### Resource Utilization
 Careful consideration is given to the resource utilization of transforms, balancing processing needs with available system resources to maintain overall system efficiency.
 
-This section details the crucial role of Transforms in the Mycelial Software architecture, outlining their functionality, integration, development, and operational considerations. The focus is on ensuring that transforms contribute effectively to the data pipeline, enhancing data compatibility, integrity, and processing efficiency.
+This section details the crucial role of Transforms in the Mycelial Software architecture, outlining their functionality, integration, development, and operational considerations. The focus is on ensuring that transforms contribute effectively to the data workflow, enhancing data compatibility, integrity, and processing efficiency.
 
 ## Data Flow and Processing
 
