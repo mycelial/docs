@@ -90,7 +90,7 @@ mycelial init --local
 ```
 
 Running the above command will download both the [Control
-plane](../core-concepts/Control-Plane.md) and the
+plane](../core-concepts/Control-Plane) and the
 [Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
 to generate the `config.toml` file.
 
