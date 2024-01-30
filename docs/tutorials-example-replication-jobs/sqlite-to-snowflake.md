@@ -6,7 +6,7 @@ title: SQLite to Snowflake
 
 # SQLite to Snowflake tutorial
 
-This tutorial will walk you through the process of setting up a data pipeline
+This tutorial will walk you through the process of setting up a data workflow
 that moves data from a SQLite database to Snowflake.
 
 ## Prerequisites
@@ -171,9 +171,9 @@ daemon then you will be prompted with a series of questions. Press enter (⏎) t
 accept the default values as shown below:
 
 ```sh
-? Client Name: (My Client) › ⏎
-? Client ID: (client) › ⏎
-? Server: (http://localhost:7777) › ⏎
+? Daemon Name: (My Daemon)› ⏎
+? Daemon ID: (daemon)› ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the token, enter `token`:
@@ -277,15 +277,15 @@ Now navigate to the Mycelial Control Plane in your browser at [http://localhost:
 When prompted for a username and password, enter `token` for for the username
 and leave the password field blank.
 
-### Create a data pipeline
+### Create a data workflow
 
-Now you'll need to create a data pipeline by doing the following steps:
+Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Client - SQLite Append Only Source` node onto the canvas.
+1. Drag and drop the `Source: My Daemon - SQLite Append Only Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Client - Snowflake Destination` node onto the canvas.
+3. Drag and drop the `Destination: My Daemon - Snowflake Destination` node onto the canvas.
 4. Connect the `SQLite Append Only Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
-5. Lastly, press `Publish` to start the pipeline.
+5. Lastly, press `Publish` to start the workflow.
 
 ## Verify the data was replicated
 

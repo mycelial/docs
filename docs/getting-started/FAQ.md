@@ -48,7 +48,7 @@ install the daemon near the source/destination, using our CLI.
 <details>
   <summary>What is the Mycelial control plane?</summary>
 
-The Mycelial control plane is a server that orchestrates data pipeline jobs.
+The Mycelial control plane is a server that orchestrates data workflow jobs.
 You can either install the control plane on one of your servers, using our CLI
 or you can use our cloud-based control plane (coming soon). 
 
@@ -75,8 +75,8 @@ After you have configured and started your daemons, the daemons will connect
 with the control plane and publish their available sources and destinations.
 Next, you'll open the web interface to the control plane and then you'll drag 
 and drop the sources and destinations you wish to connect onto the canvas, then
-you'll connect the nodes to create a data pipeline and finally you'll publish
-your pipeline.
+you'll connect the nodes to create a data workflow and finally you'll publish
+your workflow.
 
 </details>
 

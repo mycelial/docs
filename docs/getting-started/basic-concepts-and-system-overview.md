@@ -27,7 +27,7 @@ The daemons serve as the primary agents in Mycelial, tasked with extracting data
 
 ## Control Plane
 
-The control plane's role encompasses the creation and management of data pipelines. This entails connecting data sources to their respective destinations. 
+The control plane's role encompasses the creation and management of data workflows. This entails connecting data sources to their respective destinations. 
 
 - **Hosting Flexibility:** Mycelial provides versatility in terms of control plane hosting, allowing users the choice between utilizing a Mycelial-provided control plane (coming soon) or deploying it on their own infrastructure.
 
@@ -37,11 +37,11 @@ Configuration of daemons involves specifying the control plane's address, necess
 
 ### Creating a Data Movement Job
 
-The process of creating a data movement job, or data pipeline, is designed to be user-friendly.
+The process of creating a data movement job, or data workflow, is designed to be user-friendly.
 
 - **Interface Options:** Users have the option to visually link a source to a destination using Mycelial's intuitive drag-and-drop web interface or to perform this linkage through API calls.
 
-Once the data pipeline is published, the pertinent daemons commence the data transfer in accordance with the specifications of the pipeline.
+Once the data workflow is published, the pertinent daemons commence the data transfer in accordance with the specifications of the workflow.
 
 ## Practical Demonstration
 

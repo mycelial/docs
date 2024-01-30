@@ -96,7 +96,7 @@ Install the Mycelial CLI for your system.
 
 Run the following command to download and configure Mycelial.
 
-To download both the daemon (client) and the server, run the following command:
+To download both the daemon (daemon) and the control plane, run the following command:
 
 ```sh
 mycelial init --local
@@ -106,8 +106,8 @@ or to download just the daemon or the control plane (server), use the
 corresponding options:
 
 ```sh
-mycelial init --client
-# mycelial init --server
+mycelial init --daemon
+# mycelial init --control-plane
 ```
 
 After downloading the binaries, you will be prompted with a series of
@@ -137,7 +137,7 @@ Run the following command to start the control plane and daemon.
 mycelial start
 ```
 
-Or, use the `--client` or `--server` options to start them individually.
+Or, use the `--daemon` or `--control-plane` options to start them individually.
 
 If you wish to use a custom config file (ex. `my_config.toml`), you should pass
 it to the start command like this: `mycelial start --config ./my_config.toml`
@@ -155,7 +155,7 @@ Run the following command to terminate the control plane and daemon.
 mycelial destroy
 ```
 
-Or, use the `--client` or `--server` options to terminate them individually.
+Or, use the `--daemon` or `--control-plane` options to terminate them individually.
 
 ## Reset
 
@@ -166,7 +166,7 @@ plane SQLite databases), you can run the reset command:
 mycelial reset
 ```
 
-If you use the `--client` or `--server` options, the corresponding database will
+If you use the `--daemon` or `--control-plane` options, the corresponding database will
 be deleted.
 
 If you setup the daemon with a custom config file (ex `my_config.toml`), you
@@ -183,7 +183,7 @@ mycelial add --source
 ```
 
 As with most other commands, you can specify a custom config file name (ex
-`my_config.toml`) with the `--client <config_file_name>` flag.
+`my_config.toml`) with the `--daemon <config_file_name>` flag.
 
 After running this command, you'll be prompted with a series of questions that
 will assist you in creating the new source/destination.
@@ -194,7 +194,7 @@ If you wish to run the daemon (Myceliald) as a background service, run the
 following command:
 
 ```sh
-sudo mycelial service add --client
+sudo mycelial service add --daemon
 ```
 
 This will download the latest release of the Mycelial daemon (Myceliald) and 
@@ -204,7 +204,7 @@ of questions, and upon exiting the command, it will save a configuration file to
 as a service (systemd etc) and automatically started. 
 
 The location of the daemon (Myceliald) SQLite database is
-`/var/lib/mycelial/client.db`
+`/var/lib/mycelial/daemon.db`
 
 If you already have a configuration file that you would like to use with the
 daemon service, you can pass the `--config <config_file_name>` flag.
@@ -215,11 +215,11 @@ If you have previously installed the daemon (Myceliald) as a service, you can
 run the following command to remove the service:
 
 ```sh
-sudo mycelial service remove --client
+sudo mycelial service remove --daemon
 ```
 
 By default, the daemon configuration file `/etc/mycelial/config.toml` and the 
-associated SQLite file `/var/lib/mycelial/client.db` will be left untouched. If
+associated SQLite file `/var/lib/mycelial/daemon.db` will be left untouched. If
 you wish to remove these files, you can pass the `--purge` option.
 
 ## Service subcommands
@@ -230,7 +230,7 @@ If you would like to check the status of the daemon (Myceliald) service, you
 can run the following command:
 
 ```sh
-sudo mycelial service status --client
+sudo mycelial service status --daemon
 ```
 
 ### Stop
@@ -239,7 +239,7 @@ If you would like to stop the daemon (Mycelaild) service, you can run the
 following command:
 
 ```sh
-sudo mycelial service stop --client
+sudo mycelial service stop --daemon
 ```
 
 ### Start
@@ -248,7 +248,7 @@ If you have stopped the daemon (Myceliald) service and you would like to start
 it you can run the following command:
 
 ```sh
-sudo mycelial service start --client
+sudo mycelial service start --daemon
 ```
 
 ### Restart
@@ -257,5 +257,5 @@ If you need to restart the daemon (Myceliald) service, you can run the following
 command:
 
 ```sh
-sudo mycelial service restart --client
+sudo mycelial service restart --daemon
 ```

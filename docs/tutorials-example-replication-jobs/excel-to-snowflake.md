@@ -6,7 +6,7 @@ title: Excel to Snowflake
 
 # Excel to Snowflake tutorial
 
-This tutorial will walk you through the process of setting up a data pipeline
+This tutorial will walk you through the process of setting up a data workflow
 that moves data from an Excel spreadsheet to Snowflake.
 
 ## Prerequisites
@@ -111,7 +111,7 @@ Rename the worksheet to `people`.
 
 Save the file as `people.xlsx` in the `excel-demo` directory.
 
-## Download, Configure and Start the Mycelial Control Plane (server) and Daemon (client)
+## Download, Configure and Start the Mycelial Control Plane and Daemon
 
 Run the following Mycelial CLI command:
 
@@ -119,14 +119,14 @@ Run the following Mycelial CLI command:
 mycelial init --local
 ```
 
-Running the above command will download both the control plane (server) and the
+Running the above command will download both the control plane (control plane) and the
 daemon then you will be prompted with a series of questions. Press enter (⏎) to
 accept the default values as shown below:
 
 ```sh
-? Client Name: (My Client) › ⏎
-? Client ID: (client) › ⏎
-? Server: (http://localhost:7777) › ⏎
+? Daemon Name: (My Daemon)› ⏎
+? Daemon ID: (daemon)› ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the token, enter `token`:
@@ -195,15 +195,15 @@ Now navigate to the Mycelial Control Plane in your browser at `http://localhost:
 When prompted for a username and password, enter `token` for for the username
 and leave the password field blank.
 
-### Create a data pipeline
+### Create a data workflow
 
-Now you'll need to create a data pipeline by doing the following steps:
+Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Client - Excel People Source` node onto the canvas.
+1. Drag and drop the `Source: My Daemon - Excel People Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Client - Snowflake Destination` node onto the canvas.
+3. Drag and drop the `Destination: My Daemon - Snowflake Destination` node onto the canvas.
 4. Connect the `Excel People Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
-5. Lastly, press `Publish` to start the pipeline.
+5. Lastly, press `Publish` to start the workflow.
 
 ## Verify the data was replicated
 
