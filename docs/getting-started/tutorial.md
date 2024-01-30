@@ -185,7 +185,7 @@ accept the default values as shown below:
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ? Daemon ID: (daemon)› ⏎
-? Server: (http://localhost:7777) › ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the token, enter `token`:
@@ -306,9 +306,9 @@ password field blank, then press enter.
 
 Now you'll need to create workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Client - SQLite Append Only Source` node onto the canvas.
+1. Drag and drop the `Source: My Daemon - SQLite Append Only Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Client - Postgres Append Only Destination` node onto the canvas.
+3. Drag and drop the `Destination: My Daemon - Postgres Append Only Destination` node onto the canvas.
 4. Connect the `SQLite Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Destination` node.
 5. Lastly, press `Publish` to start the workflow.
 

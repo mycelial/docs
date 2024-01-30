@@ -173,7 +173,7 @@ accept the default values as shown below:
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ? Daemon ID: (daemon)› ⏎
-? Server: (http://localhost:7777) › ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the token, enter `token`:
@@ -281,9 +281,9 @@ and leave the password field blank.
 
 Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Client - SQLite Append Only Source` node onto the canvas.
+1. Drag and drop the `Source: My Daemon - SQLite Append Only Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Client - Snowflake Destination` node onto the canvas.
+3. Drag and drop the `Destination: My Daemon - Snowflake Destination` node onto the canvas.
 4. Connect the `SQLite Append Only Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
 5. Lastly, press `Publish` to start the workflow.
 

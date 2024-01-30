@@ -60,7 +60,7 @@ Where:
   - The password for the specified username.
 
 4. **Host**: `localhost`
-   - The host where the database server is running. `localhost` means the server is on the same machine as the client.
+   - The host where the database server is running. `localhost` means the server is on the same machine as the daemon.
 
 5. **Port**: `3306`
   - The port number where the MySQL server is listening. The default is `3306`.
@@ -68,7 +68,7 @@ Where:
 6. **Database**: `test`
   - The name of the database to connect to, here it is `test`.
 
-This string instructs the client to connect to the `test` database on the local
+This string instructs the daemon to connect to the `test` database on the local
 machine (`localhost`) using port `3306`, with the username `user` and password
 `password`.
 
@@ -110,26 +110,26 @@ plane](../core-concepts/Control-Plane.md) and the
 [Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
 to generate the `config.toml` file.
 
-When prompted for the `Client Name:` press return (⏎) to accept the default
-value or enter a name for your client and press return (⏎).
+When prompted for the `Daemon Name:` press return (⏎) to accept the default
+value or enter a name for your daemon and press return (⏎).
 
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ```
 
-When prompted for the `Client ID:` press return (⏎) to accept the default value
-or enter a client ID and press return (⏎).
+When prompted for the `Daemon ID:` press return (⏎) to accept the default value
+or enter a daemon ID and press return (⏎).
 
 ```sh
 ? Daemon ID: (daemon)› ⏎
 ```
 
-When prompted for the `Server:` press return (⏎) to accept the default value or
+When prompted for the `Control Plane:` press return (⏎) to accept the default value or
 enter the URL of the control plane and press return (⏎). If you are just trying
 out Mycelial, you should press return (⏎) to accept the default value.
 
 ```sh
-? Server: (http://localhost:7777) › ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the `Security Token:` enter a token and press return (⏎). If 
@@ -347,9 +347,9 @@ After exiting the CLI will save the modified `config.toml`.
 
 ## Usage
 
-After you have added the Postgres source to the `config.toml` file, either
+After you have added the MySQL source to the `config.toml` file, either
 manually or via the CLI, you can [start](../getting-started/CLI.md#starting) the
 Mycelial Daemon. Once the daemon is running, you can open the Mycelial control
-plane web interface and you should see the SQLite source listed in the sources
+plane web interface and you should see the MySQL source listed in the sources
 section.
 

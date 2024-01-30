@@ -1,36 +1,36 @@
 ---
-sidebar_position: 3
-id: postgres
-title: Postgres
+sidebar_position: 5
+id: mysql
+title: Mysql
 ---
 
-# Postgres
+# Mysql
 
-The Postgres destination allows you to write data to a Postgres database. 
+The Mysql destination allows you to write data to a Mysql database.
 
-To use the Postgres destination, you will need to install the Mycelial Daemon on
-the computer that has access to the Postgres database. Refer to the
+To use the Mysql destination, you will need to install the Mycelial Daemon on
+the computer that has access to the Mysql database. Refer to the
 [CLI](../getting-started/CLI.md) documentation for instructions on how to
 install the Mycelial Daemon.
 
 ## Configuration
 
 The Mycelial Daemon uses a TOML configuration file to specify the data sources
-and destinations that it has available to it. To add Postgres as a data destination,
+and destinations that it has available to it. To add Mysql as a data destination,
 you will need to add a section to the TOML file (`config.toml`) that looks like
 this:
 
 ```toml
 [[destinations]]
-type = "postgres_connector"
-display_name = "postgres destination"
-url = "postgres://user:password@127.0.0.1:5432/test"
+type = "mysql_connector"
+display_name = "mysql destination"
+url = "mysql://username:password@127.0.0.1:3306/test"
 ```
 
 ### type
 
 The `type` field specifies the type of data destination, in this case it is
-`postgres_connector`.
+`mysql_connector`.
 
 ### display_name
 
@@ -39,32 +39,34 @@ interface and via the API.
 
 ### url
 
-The `url` field is the connection string to the Postgres database.  The format
-of the PostgreSQL connection string is:
+The `url` field is the connection string to the Mysql database.  The format
+of the Mysql connection string is:
 
-`postgres://user:password@localhost:5432/test`
+`mysql://username:password@localhost:3306/test`
 
 Where:
 
-1. **Protocol**: `postgres://`
-   - Indicates the database type (PostgreSQL) and connection protocol.
+1. **Protocol**: `mysql://`
+  - Indicates the database type (Mysql) and connection protocol.
 
-2. **User**: `user`
-   - The username for database authentication.
+2. **User**: `username`
+  - The username for database authentication.
 
 3. **Password**: `password`
-   - The password for the specified username.
+  - The password for the specified username.
 
 4. **Host**: `localhost`
-   - The host where the database server is running. `localhost` means the server is on the same machine as the daemon.
+  - The host where the database server is running. `localhost` means the server is on the same machine as the daemon.
 
-5. **Port**: `5432`
-   - The port number where the PostgreSQL server is listening. The default is `5432`.
+5. **Port**: `3306`
+  - The port where the database server is listening for connections. The default port for Mysql is `3306`.
 
-6. **Database Name**: `test`
-   - The name of the database to connect to, here it is `test`.
+6. **Database**: `test`
+  -- The name of the database to connect to, here it is `test`.
 
-This string instructs the daemon to connect to the `test` database on the local machine (`localhost`) using port `5432`, with the username `user` and password `password`.
+This string instructs the Mysql connector to connect to the database `test` on
+the local machine (`localhost`) using port `3306`, with the username `username`
+and password `password`.
 
 ## Configuration via CLI
 
@@ -75,8 +77,8 @@ install the Mycelial CLI.
 ### Creating a new `config.toml` file
 
 If you are creating a new `config.toml` file, you can use the Mycelial CLI to
-generate the file and add the Postgres destination. To do this, run the
-following command:
+generate the file and add the Mysql destination. To do this, run the following 
+command:
 
 ```sh
 mycelial init --local
@@ -101,7 +103,7 @@ or enter a daemon ID and press return (⏎).
 ? Daemon ID: (daemon)› ⏎
 ```
 
-When prompted for the `Control Plane:` press return (⏎) to accept the default value or
+When prompted for the `Server:` press return (⏎) to accept the default value or
 enter the URL of the control plane and press return (⏎). If you are just trying
 out Mycelial, you should press return (⏎) to accept the default value.
 
@@ -127,59 +129,57 @@ highlight `Add Destination` and press return (⏎).
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only Postgres destination` and press return (⏎).
+down arrow to highlight `Append only MySql destination` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
   Full SQLite replication destination
   Append only SQLite destination
-❯ Append only Postgres destination ⏎
-  Append only MySQL destination
+  Append only Postgres destination 
+❯ Append only MySQL destination ⏎
   Kafka destination
   Snowflake destination
   File destination
 ```
 
-When prompted for the `Display Name` press return (⏎) to accept the default or
+When prompted for the `Display Name` press return (⏎) to accept the default or 
 enter a name for your destination and press return (⏎).
 
 ```sh
-? Display name: (Postgres Append Only Destination) › ⏎
+? Display name: (Mysql Append Only Destination) › ⏎
 ```
 
-When prompted for the `Postgres username`, enter the username for the Posgres 
+When prompted for the `MySQL username`, enter the username for the MySQL 
 user and press return (⏎).
 
 ```sh
-? Postgres username: (user) › postgres ⏎
+? MySQL username: (user) › mysql_user ⏎
 ```
 
-When prompted for the `Postgres password`, enter the password for the Posgres
+When prompted for the `MySQL password`, enter the password for the MySQL
 user and press return (⏎).
 
 ```sh
-? Postgres password: › password ⏎
+? MySQL password: › mysql_password ⏎
 ```
 
 When prompted for the `Server address`, enter the host name or IP address for
-the Posgres database.
+the MySQL database.
 
 ```sh
-? Server address: (localhost) › mypostgreshost.com ⏎
+? Server address: (localhost) › mymysqlhost.com ⏎
 ```
 
-When prompted for the `Postgres port`, press return (⏎) to accept the default 
-port or enter the port number for the Posgres database and press return (⏎).
+When prompted for the `MySQL port`, enter the port for the MySQL database.
 
 ```sh
-? Postgres port: (5432) › ⏎
+? MySQL port: (3306) › 3306 ⏎
 ```
 
-When prompted for the `Database name`, enter the name of the Posgres database
-and press return (⏎).
+When prompted for the `Database name`, enter the name of the MySQL database.
 
 ```sh
-? Database name: (test) › my_db ⏎
+? Database name: (database) › my_db ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -197,7 +197,7 @@ After exiting the CLI will generate a `config.toml`.
 ### Appending to an existing `config.toml` file
 
 If you already have a `config.toml` file, you can use the Mycelial CLI to add
-the Postgres destination. To do this, run the following command from the same
+the MySQL destination. To do this, run the following command from the same
 directory as the `config.toml` file:
 
 ```sh
@@ -205,60 +205,58 @@ mycelial add --destination
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only Postgres destination` and press return (⏎).
+down arrow to highlight `Append only MySQL destination` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
   Full SQLite replication destination
   Append only SQLite destination
-❯ Append only Postgres destination ⏎
-  Append only MySQL destination
+  Append only Postgres destination 
+❯ Append only MySQL destination ⏎
   Kafka destination
   Snowflake destination
   File destination
   Exit
 ```
 
-When prompted for the `Display Name` press return (⏎) to accept the default or
+When prompted for the `Display Name` press return (⏎) to accept the default or 
 enter a name for your destination and press return (⏎).
 
 ```sh
-? Display name: (Postgres Append Only Destination) › ⏎
+? Display name: (Mysql Append Only Destination) › ⏎
 ```
 
-When prompted for the `Postgres username`, enter the username for the Posgres 
+When prompted for the `MySQL username`, enter the username for the MySQL 
 user and press return (⏎).
 
 ```sh
-? Postgres username: (user) › postgres ⏎
+? MySQL username: (user) › mysql_user ⏎
 ```
 
-When prompted for the `Postgres password`, enter the password for the Posgres
+When prompted for the `MySQL password`, enter the password for the MySQL
 user and press return (⏎).
 
 ```sh
-? Postgres password: › password ⏎
+? MySQL password: › mysql_password ⏎
 ```
 
 When prompted for the `Server address`, enter the host name or IP address for
-the Posgres database.
+the MySQL database.
 
 ```sh
-? Server address: (localhost) › mypostgreshost.com ⏎
+? Server address: (localhost) › mymysqlhost.com ⏎
 ```
 
-When prompted for the `Postgres port`, press return (⏎) to accept the default 
-port or enter the port number for the Posgres database and press return (⏎).
+When prompted for the `MySQL port`, enter the port for the MySQL database.
 
 ```sh
-? Postgres port: (5432) › ⏎
+? MySQL port: (3306) › 3306 ⏎
 ```
 
-When prompted for the `Database name`, enter the name of the Posgres database
-and press return (⏎).
+When prompted for the `Database name`, enter the name of the MySQL database.
 
 ```sh
-? Database name: (test) › my_db ⏎
+? Database name: (database) › my_db ⏎
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
@@ -280,8 +278,8 @@ After exiting the CLI will save the modified `config.toml`.
 
 ## Usage
 
-After you have added the Postgres destination to the `config.toml` file, either
+After you have added the MySQL destination to the `config.toml` file, either
 manually or via the CLI, you can [start](../getting-started/CLI.md#starting) the
 Mycelial Daemon. Once the daemon is running, you can open the Mycelial control
-plane web interface and you should see the Postgres destination listed in the
+plane web interface and you should see the MySQL source listed in the
 destination section.

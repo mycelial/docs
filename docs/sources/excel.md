@@ -89,26 +89,26 @@ plane](../core-concepts/Control-Plane.md) and the
 [Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
 to generate the `config.toml` file.
 
-When prompted for the `Client Name:` press return (⏎) to accept the default
-value or enter a name for your client and press return (⏎).
+When prompted for the `Daemon Name:` press return (⏎) to accept the default
+value or enter a name for your daemon and press return (⏎).
 
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ```
 
-When prompted for the `Client ID:` press return (⏎) to accept the default value
-or enter a client ID and press return (⏎).
+When prompted for the `Daemon ID:` press return (⏎) to accept the default value
+or enter a daemon ID and press return (⏎).
 
 ```sh
 ? Daemon ID: (daemon)› ⏎
 ```
 
-When prompted for the `Server:` press return (⏎) to accept the default value or
+When prompted for the `Control Plane:` press return (⏎) to accept the default value or
 enter the URL of the control plane and press return (⏎). If you are just trying
 out Mycelial, you should press return (⏎) to accept the default value.
 
 ```sh
-? Server: (http://localhost:7777) › ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the `Security Token:` enter a token and press return (⏎). If 
@@ -274,4 +274,4 @@ After exiting the CLI will save the modified `config.toml`.
 After you have added the Excel source to the `config.toml` file, either manually
 or via the CLI, you can [start](../getting-started/CLI.md#starting) the Mycelial
 Daemon. Once the daemon is running, you can open the Mycelial control plane web
-interface and you should see the SQLite source listed in the sources section.
+interface and you should see the Excel source listed in the sources section.

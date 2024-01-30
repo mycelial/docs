@@ -6,19 +6,20 @@ title: SQLite Replication
 
 # SQLite Replication
 
-The SQLite Replication source allows you to read data from a SQLite database for the
-purpose of fully replicating a SQLite database. 
+The SQLite Replication source allows you to read data from a SQLite database for
+the purpose of fully replicating a SQLite database. 
 
-To use the SQLite Replication source, you will need to install the Mycelial Daemon on 
-the computer that has the SQLite database. Refer to the [CLI](../getting-started/CLI.md)
-documentation for instructions on how to install the Mycelial Daemon.
+To use the SQLite Replication source, you will need to install the Mycelial
+Daemon on the computer that has the SQLite database. Refer to the
+[CLI](../getting-started/CLI.md) documentation for instructions on how to
+install the Mycelial Daemon.
 
 Full replication of a SQLite database is accomplished with the help of a SQLite
 extension we maintain named [Mycelite](https://github.com/mycelial/mycelite).
 
-You'll need to download and load the Mycelite extension into your SQLite database
-sessions. The output of Mycelite is a journal file that is written to disk. The
-journal file is used to replicate the SQLite database.
+You'll need to download and load the Mycelite extension into your SQLite
+database sessions. The output of Mycelite is a journal file that is written to
+disk. The journal file is used to replicate the SQLite database.
 
 ## Configuration
 
@@ -78,26 +79,26 @@ plane](../core-concepts/Control-Plane.md) and the
 [Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
 to generate the `config.toml` file.
 
-When prompted for the `Client Name:` press return (⏎) to accept the default
-value or enter a name for your client and press return (⏎).
+When prompted for the `Daemon Name:` press return (⏎) to accept the default
+value or enter a name for your daemon and press return (⏎).
 
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ```
 
-When prompted for the `Client ID:` press return (⏎) to accept the default value
-or enter a client ID and press return (⏎).
+When prompted for the `Daemon ID:` press return (⏎) to accept the default value
+or enter a daemon ID and press return (⏎).
 
 ```sh
 ? Daemon ID: (daemon)› ⏎
 ```
 
-When prompted for the `Server:` press return (⏎) to accept the default value or
+When prompted for the `Control Plane:` press return (⏎) to accept the default value or
 enter the URL of the control plane and press return (⏎). If you are just trying
 out Mycelial, you should press return (⏎) to accept the default value.
 
 ```sh
-? Server: (http://localhost:7777) › ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the `Security Token:` enter a token and press return (⏎). If 
@@ -119,7 +120,7 @@ highlight `Add Source` and press return (⏎).
 
 
 When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Append only Posgres source` and press return (⏎).
+arrow to highlight `Full SQLite replication source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
@@ -156,20 +157,20 @@ highlight `Exit` and press return (⏎).
 ❯ Exit ⏎
 ```
 
-----
+After exiting the CLI will generate a `config.toml`.
 
 ### Appending to an existing `config.toml` file
 
 If you already have a `config.toml` file, you can use the Mycelial CLI to add
-the Excel source. To do this, run the following command from the same directory
-as the `config.toml` file:
+the Full SQLite replication source. To do this, run the following command from
+the same directory as the `config.toml` file:
 
 ```sh
 mycelial add --source
 ```
 
 When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Append only Postgres source` and press return (⏎).
+arrow to highlight `Full SQLite replication source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›

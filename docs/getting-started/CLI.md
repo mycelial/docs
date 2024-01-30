@@ -96,7 +96,7 @@ Install the Mycelial CLI for your system.
 
 Run the following command to download and configure Mycelial.
 
-To download both the daemon (client) and the server, run the following command:
+To download both the daemon (daemon) and the control plane, run the following command:
 
 ```sh
 mycelial init --local
@@ -204,7 +204,7 @@ of questions, and upon exiting the command, it will save a configuration file to
 as a service (systemd etc) and automatically started. 
 
 The location of the daemon (Myceliald) SQLite database is
-`/var/lib/mycelial/client.db`
+`/var/lib/mycelial/daemon.db`
 
 If you already have a configuration file that you would like to use with the
 daemon service, you can pass the `--config <config_file_name>` flag.
@@ -219,7 +219,7 @@ sudo mycelial service remove --daemon
 ```
 
 By default, the daemon configuration file `/etc/mycelial/config.toml` and the 
-associated SQLite file `/var/lib/mycelial/client.db` will be left untouched. If
+associated SQLite file `/var/lib/mycelial/daemon.db` will be left untouched. If
 you wish to remove these files, you can pass the `--purge` option.
 
 ## Service subcommands
