@@ -1,5 +1,4 @@
 ---
-slug: /
 sidebar_position: 1
 id: basic-concepts-and-system-overview
 title: Basic Concepts and System Overview
