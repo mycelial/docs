@@ -327,7 +327,7 @@ tutorial database.
 
 To display the tables enter `\dt`, and you should see the `users` table listed.
 
-To query the users table, enter the following sqlite statement:
+To query the users table, enter the following SQL statement:
 
 ```sql
 select * from users;
