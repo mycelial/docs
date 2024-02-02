@@ -326,7 +326,6 @@ Next, you'll open up the control plane web interface at [`http://localhost:7777`
 When prompted to sign in, enter `token` in the username field and leave the
 password field blank, then press enter.
 
-<!-- include image to sign_in.png -->
 <img src="/img/sign_in.png" alt="Sign in" width="300"/>
 
 When prompted with a workspace, click on the `Default` workspace.
@@ -339,7 +338,7 @@ Now you'll need to create workflow by doing the following steps:
 4. Connect the `SQLite Append Only Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Append Only Destination` node.
 5. Lastly, press the `Publish` button to start the workflow.
 
-<img src="/img/tutorial.gif" alt="Workflow creation" width="600"/>
+<img src="/img/tutorial.gif" alt="Workflow creation" width="800"/>
 
 At this point, the `users` table from the SQLite source database should be
 synchronized with the `Postgres` destination database.
