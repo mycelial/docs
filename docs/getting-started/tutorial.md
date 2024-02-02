@@ -72,40 +72,40 @@ Follow the below instructions to install the Mycelial CLI:
   <h4>Debian Based Linux x86_64</h4>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_amd64.deb --output mycelial_amd64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.deb --output mycelial_amd64.deb
   dpkg -i ./mycelial_amd64.deb
   ```
 
   <h4>Debian Based Linux ARM64</h4>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_arm64.deb --output mycelial_arm64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.deb --output mycelial_arm64.deb
   dpkg -i ./mycelial_arm64.deb
   ```
 
   <h4>Debian Based Linux ARM</h4>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_armhf.deb --output mycelial_armhf.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.deb --output mycelial_armhf.deb
   dpkg -i ./mycelial_armhf.deb
   ```
 
   <h4>Redhat Based Linux x86_64</h4>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.x86_64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.rpm 
   ```
 
   <h4>Redhat Based Linux ARM64</h4>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.arm64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.rpm 
   ```
 
   <h4>Redhat Based Linux ARM</h4>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.armhf.rpm
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.rpm
   ```
 
 
@@ -210,13 +210,24 @@ arrow to highlight `Append only SQLite source` and press enter.
 ```sh
 ? What type of source would you like to add? ›
   Full SQLite replication source
-❯ Append only SQLite source
+❯ Append only SQLite source ⏎
+  Excel source
+  Append only Postgres source
+  Append only MySQL source
+  File source
+  Cancel
 ```
 
 When prompted for the `Display Name` press enter to accept the default name.
 
 ```sh
 ? Display name: (SQLite Append Only Source) › ⏎
+```
+
+When prompted for the `Tables` press enter to accept the default value.
+
+```sh
+? Tables: (*) › ⏎
 ```
 
 When prompted for the `Database Path`, enter `source.db`.
@@ -242,10 +253,12 @@ down arrow to hightlight `Append only Postgres destination` and press enter.
 ? What type of destination would you like to add? ›
   Full SQLite replication destination
   Append only SQLite destination
-❯ Append only Postgres destination
+❯ Append only Postgres destination ⏎
   Append only MySQL destination
   Kafka destination
-  ...
+  Snowflake destination
+  File destination
+  Cancel
 ```
 
 When prompted with `Display name`, press enter to accept the default.
@@ -257,13 +270,13 @@ When prompted with `Display name`, press enter to accept the default.
 When prompted with `Postgres username`, enter `postgres`
 
 ```sh
-? Postgres username: (user) > postgres
+? Postgres username: (user) > postgres ⏎
 ```
 
 When prompted with `Postgres password`, enter `secret`
 
 ```sh
-? Postgres password: secret
+? Postgres password: secret ⏎
 ```
 
 When prompted with `Server address`, press enter to accept the default.
@@ -281,7 +294,7 @@ When prompted with `Postgres port`, press enter to accept the default.
 When prompted with `Database name`, enter `tutorial`.
 
 ```sh
-? Database name: (db) › tutorial
+? Database name: (db) › tutorial ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -291,26 +304,42 @@ hightlight `Exit` and press enter.
 ? What would you like to do? ›
   Add Source
   Add Destination
-❯ Exit 
+❯ Exit ⏎
 ```
 
 After Exiting the mycelial `CLI`, a `config.toml` file is created.
 
-Now start both the daemon and control plane by running the command 
-`mycelial start`. When prompted for the `Security token` enter `token`.
+Now start both the daemon and control plane by running the command:
 
-Next, you'll open up the control plane web interface at `http://localhost:7777`.
+```sh
+mycelial start ⏎
+```
+
+When prompted for the `Security token` enter `token`.
+
+```sh
+? Security Token: › token ⏎
+```
+
+Next, you'll open up the control plane web interface at [`http://localhost:7777`](http://localhost:7777).
 
 When prompted to sign in, enter `token` in the username field and leave the
 password field blank, then press enter.
 
+<!-- include image to sign_in.png -->
+<img src="/img/sign_in.png" alt="Sign in" width="300"/>
+
+When prompted with a workspace, click on the `Default` workspace.
+
 Now you'll need to create workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Daemon - SQLite Append Only Source` node onto the canvas.
+1. Drag and drop the `SQLite Append Only Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Daemon - Postgres Append Only Destination` node onto the canvas.
-4. Connect the `SQLite Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Destination` node.
-5. Lastly, press `Publish` to start the workflow.
+3. Drag and drop the `Postgres Append Only Destination` node onto the canvas.
+4. Connect the `SQLite Append Only Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Append Only Destination` node.
+5. Lastly, press the `Publish` button to start the workflow.
+
+<img src="/img/tutorial.gif" alt="Workflow creation" width="600"/>
 
 At this point, the `users` table from the SQLite source database should be
 synchronized with the `Postgres` destination database.
