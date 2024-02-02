@@ -170,42 +170,176 @@ highlight `Exit` and press enter.
 
 ```sh
 ? What would you like to do? ›
+❯ Add Source ⏎
+  Add Destination
+  Exit
+```
+
+When prompted with `What type of source would you like to add?`, press the down
+arrow to highlight `Append only Postgres source` and press return.
+
+```sh
+? What type of source would you like to add? ›
+  Full SQLite replication source
+  Append only SQLite source
+  Excel source
+❯ Append only Postgres source ⏎
+  Append only MySQL source
+  File source
+  Cancel
+```
+
+When prompted for the `Display Name` press return to accept the default name.
+
+```sh
+? Display name: (Postgres Source) › ⏎
+```
+
+When prompted for the `Postgres username`, enter `postgres` and press return.
+
+```sh
+? Postgres username: (user) › postgres ⏎
+```
+
+When prompted for the `Postgres password`, enter `secret` and press return.
+
+```sh
+? Postgres password: › secret ⏎
+```
+
+When prompted for the `Server address`, press return to accept the default value.
+
+```sh
+? Server address: (localhost) › ⏎
+```
+
+When prompted for the `Postgres port`, press return to accept the default value.
+
+```sh
+? Postgres port: (5432) › ⏎
+```
+
+When prompted for the `Database name`, enter `tutorial` and press return.
+
+```sh
+? Database name: (test) › tutorial ⏎
+```
+
+When prompted for the `Schema`, press return to accept the default value.
+
+```sh
+? Schema: (public) › ⏎
+```
+
+When prompted for the `Tables`, press return to accept the default value.
+
+```sh
+? Tables: (*) ›
+```
+
+When prompted for the `Poll interval (seconds)`, press return to accept the default value.
+
+```sh
+? Poll interval (seconds): (5) ›
+```
+
+When prompted with `What would you like to do?`, press the down arrow to
+hightlight `Add Destination` and press enter.
+
+```sh
+? What would you like to do? ›
+  Add Source
+❯ Add Destination ⏎
+  Exit 
+```
+
+When prompted with `What type of destination would you like to add?`, press the
+down arrow to hightlight `Snowflake destination` and press enter.
+
+```sh
+? What type of destination would you like to add? ›
+  Full SQLite replication destination
+  Append only SQLite destination
+  Append only Postgres destination
+  Append only MySQL destination
+  Kafka destination
+❯ Snowflake destination ⏎
+  File destination
+  Cancel
+```
+
+When prompted for the `Display Name` press return to accept the default name.
+
+```sh
+? Display name: (Snowflake Destination) › ⏎
+```
+
+When prompted for the `Snowflake username`, enter your Snowflake username and
+press return.
+
+```sh
+? Snowflake username: › [username] ⏎
+```
+
+When prompted for the `Snowflake password`, enter your Snowflake password and
+press return.
+
+```sh
+? Snowflake password: › [password] ⏎
+```
+
+When prompted for the `Snowflake role`, enter your Snowflake role and press
+return.
+
+```sh
+? Snowflake role: › [role] ⏎
+```
+
+When prompted for the `Snowflake account name`, enter your Snowflake account
+name and press return.
+
+```sh
+? Snowflake account name: › [account123] ⏎
+```
+
+When prompted for the `Snowflake organization name`, enter your Snowflake
+organization name and press return.
+
+```sh
+? Snowflake organization name: › [myorg] ⏎
+```
+
+When prompted for the `Snowflake warehouse`, enter your Snowflake warehouse and
+
+```sh
+? Snowflake warehouse: › [warehouse] ⏎
+```
+
+When prompted for the `Database name`, enter your Snowflake database name and
+press return.
+
+```sh
+? Database name: › [database] ⏎
+```
+
+When prompted for the `Schema`, enter your Snowflake schema name and press return.
+
+```sh
+? Schema: › [schema] ⏎
+```
+
+When prompted with `What would you like to do?`, press the down arrow key to
+highlight `Exit` then press return.
+
+```sh
+? What would you like to do? ›
   Add Source
   Add Destination
-❯ Exit
+❯ Exit ⏎
 ```
 
 After exiting the Mycelial CLI, a `config.toml` file will be created in the current
 directory. 
-
-### Add Postgres as a source and Snowflake as a destination
-
-Open the `config.toml` file in your favorite text editor and append the
-following configuration to the file:
-
-```toml
-[[sources]]
-type = "postgres_connector"
-display_name = "postgres source"
-url = "postgres://postgres:secret@localhost:5432/tutorial"
-schema = "public"
-tables = "*"
-poll_interval = 5
-
-[[destinations]]
-type = "snowflake"
-display_name = "snowflake destination"
-username = "[username]"
-password = "[password]"
-role = "[role]"
-account_identifier = "[myorg-account123]"
-warehouse = "[warehouse]"
-database = "[database]"
-schema = "[schema]"
-```
-
-**NOTE:** Replace the bracked values ([]) with the appropriate values for your
-Snowflake account.
 
 ### Start the Mycelial Control Plane and Daemon
 
@@ -232,15 +366,17 @@ and leave the password field blank.
 
 Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Daemon - Postgres Source` node onto the canvas.
+1. Drag and drop the `Postgres Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Daemon - Snowflake Destination` node onto the canvas.
+3. Drag and drop the `Snowflake Destination` node onto the canvas.
 4. Connect the `Postgres Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
 5. Lastly, press `Publish` to start the workflow.
 
+<img src="/img/postgres_to_snowflake_tutorial.gif" alt="Workflow creation" width="800"/>
+
 ## Verify the data was replicated
 
-At this point, the `people` worksheet from the Excel source should be
+At this point, the `users` table from the Postgres source should be
 synchronized with the `Snowflake` destination database.
 
 ## Cleanup
