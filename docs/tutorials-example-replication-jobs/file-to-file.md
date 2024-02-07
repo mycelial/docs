@@ -1,18 +1,14 @@
 ---
-sidebar_position: 3
-id: postgres-to-snowflake
-title: Postgres to Snowflake
+sidebar_position: 5
+id: file-to-file
+title: File to File
 ---
 
-# Postgres to Snowflake tutorial
+# File to File tutorial
 
-In this tutorial you will move data from a Postgres database to Snowflake using Mycelial.
+In this tutorial you will move data from a file to another file using Mycelial.
 
 ## Prerequisites
-
-### Installing Docker
-
-Follow the [instructions here](https://www.docker.com/get-started/) to install docker on your system.
 
 ### Install the Mycelial CLI
 
@@ -93,52 +89,8 @@ Follow the below instructions to install the Mycelial CLI:
 ## Create a demo directory
 
 ```sh
-mkdir postgres-to-snowflake
-cd postgres-to-snowflake
-```
-
-## Create the source Postgres database
-
-Start Postgres in a docker container with the following command:
-
-```sh
-docker run --name postgres-db -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
-```
-
-Enter the container and run the `psql` application with the following command:
-
-```sh
-docker exec -it postgres-db psql -U postgres
-```
-
-Create a new database with the following command:
-
-```sh
-CREATE DATABASE tutorial;
-```
-
-Connect to the new database with the following command:
-
-```sh
-\c tutorial
-```
-
-Create a new users table with the following command:
-
-```sql
-CREATE TABLE users(id serial primary key, name text);
-```
-
-Insert a new row in the `users` table:
-
-```sql
-INSERT INTO users(name) VALUES ('James');
-```
-
-Exit out of the `psql` application with the following command:
-
-```sh
-\q
+mkdir file-to-file
+cd file-to-file
 ```
 
 ## Download, Configure and Start the Mycelial Control Plane and Daemon 
@@ -176,71 +128,29 @@ highlight `Add Source` and press enter.
 ```
 
 When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Append only Postgres source` and press return.
+arrow to highlight `File source` and press return.
 
 ```sh
 ? What type of source would you like to add? ›
   Full SQLite replication source
   Append only SQLite source
   Excel source
-❯ Append only Postgres source ⏎
-  Append only MySQL source
-  File source
+  Append only Postgres source 
+  Append only MySQL source 
+❯ File source ⏎
   Cancel
 ```
 
 When prompted for the `Display Name` press return to accept the default name.
 
 ```sh
-? Display name: (Postgres Source) › ⏎
+? Display name: (file source) › ⏎
 ```
 
-When prompted for the `Postgres username`, enter `postgres` and press return.
+When prompted for the `Path` enter `input.txt` and press return.
 
 ```sh
-? Postgres username: (user) › postgres ⏎
-```
-
-When prompted for the `Postgres password`, enter `secret` and press return.
-
-```sh
-? Postgres password: › secret ⏎
-```
-
-When prompted for the `Server address`, press return to accept the default value.
-
-```sh
-? Server address: (localhost) › ⏎
-```
-
-When prompted for the `Postgres port`, press return to accept the default value.
-
-```sh
-? Postgres port: (5432) › ⏎
-```
-
-When prompted for the `Database name`, enter `tutorial` and press return.
-
-```sh
-? Database name: (test) › tutorial ⏎
-```
-
-When prompted for the `Schema`, press return to accept the default value.
-
-```sh
-? Schema: (public) › ⏎
-```
-
-When prompted for the `Tables`, press return to accept the default value.
-
-```sh
-? Tables: (*) ›
-```
-
-When prompted for the `Poll interval (seconds)`, press return to accept the default value.
-
-```sh
-? Poll interval (seconds): (5) ›
+? Path: (file.txt) › input.txt ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -263,69 +173,24 @@ down arrow to hightlight `Snowflake destination` and press enter.
   Append only Postgres destination
   Append only MySQL destination
   Kafka destination
-❯ Snowflake destination ⏎
-  File destination
+  Snowflake destination 
+❯ File destination ⏎
   Cancel
 ```
 
 When prompted for the `Display Name` press return to accept the default name.
 
 ```sh
-? Display name: (Snowflake Destination) › ⏎
+? Display name: (file destination) › ⏎
 ```
 
-When prompted for the `Snowflake username`, enter your Snowflake username and
-press return.
+When prompted for the `Path` enter `output.txt` and press return.
 
 ```sh
-? Snowflake username: › [username] ⏎
+? Path: (file.txt) › output.txt ⏎
 ```
 
-When prompted for the `Snowflake password`, enter your Snowflake password and
-press return.
-
-```sh
-? Snowflake password: › [password] ⏎
-```
-
-When prompted for the `Snowflake role`, enter your Snowflake role and press
-return.
-
-```sh
-? Snowflake role: › [role] ⏎
-```
-
-When prompted for the `Snowflake account name`, enter your Snowflake account
-name and press return.
-
-```sh
-? Snowflake account name: › [account123] ⏎
-```
-
-When prompted for the `Snowflake organization name`, enter your Snowflake
-organization name and press return.
-
-```sh
-? Snowflake organization name: › [myorg] ⏎
-```
-
-When prompted for the `Snowflake warehouse`, enter your Snowflake warehouse and
-
-```sh
-? Snowflake warehouse: › [warehouse] ⏎
-```
-
-When prompted for the `Database name`, enter your Snowflake database name and
-press return.
-
-```sh
-? Database name: › [database] ⏎
-```
-
-When prompted for the `Schema`, enter your Snowflake schema name and press return.
-
-```sh
-? Schema: › [schema] ⏎
+When prompted with `What would you like to do?`, press the down arrow to
 ```
 
 When prompted with `What would you like to do?`, press the down arrow key to
@@ -340,6 +205,12 @@ highlight `Exit` then press return.
 
 After exiting the Mycelial CLI, a `config.toml` file will be created in the current
 directory. 
+
+Create the input file `input.txt` with the following content:
+
+```sh
+echo "Hello, World!" > input.txt
+```
 
 ### Start the Mycelial Control Plane and Daemon
 
@@ -364,18 +235,21 @@ and leave the password field blank.
 
 Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Postgres Source` node onto the canvas.
+1. Drag and drop the `File Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Snowflake Destination` node onto the canvas.
+3. Drag and drop the `File Destination` node onto the canvas.
 4. Connect the `Postgres Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
 5. Lastly, press `Publish` to start the workflow.
 
-<img src="/img/postgres_to_snowflake_tutorial.gif" alt="Workflow creation" width="800"/>
+<img src="/img/file_to_file_tutorial.gif" alt="Workflow creation" width="800"/>
 
 ## Verify the data was replicated
 
-At this point, the `users` table from the Postgres source should be
-synchronized with the `Snowflake` destination database.
+At this point the data should have been replicated from the `input.txt` file to the `output.txt` file. You can verify this by running the following command:
+
+```sh
+cat output.txt
+```
 
 ## Cleanup
 
@@ -385,13 +259,4 @@ Run the following command to stop the Mycelial Control Plane and Daemon:
 
 ```sh
 mycelial destroy
-```
-
-### Stop the Postgres database
-
-Run the following commands to stop and remove the Postgres database:
-
-```sh
-docker stop postgres-db
-docker rm postgres-db
 ```

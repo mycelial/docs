@@ -1,12 +1,13 @@
 ---
-sidebar_position: 3
-id: postgres-to-snowflake
-title: Postgres to Snowflake
+sidebar_position: 4
+id: mysql-to-snowflake
+title: MySQL to Snowflake
 ---
 
-# Postgres to Snowflake tutorial
+# MySQL to Snowflake tutorial
 
-In this tutorial you will move data from a Postgres database to Snowflake using Mycelial.
+In this tutorial you will move data from a MySQL database to Snowflake using Mycelial.
+
 
 ## Prerequisites
 
@@ -93,40 +94,42 @@ Follow the below instructions to install the Mycelial CLI:
 ## Create a demo directory
 
 ```sh
-mkdir postgres-to-snowflake
-cd postgres-to-snowflake
+mkdir mysql-to-snowflake
+cd mysql-to-snowflake
 ```
 
-## Create the source Postgres database
+## Create the source MySQL database
 
-Start Postgres in a docker container with the following command:
+Start MySQL in a docker container with the following command:
 
 ```sh
-docker run --name postgres-db -e POSTGRES_PASSWORD=secret -p 5432:5432 -d postgres
-```
 
-Enter the container and run the `psql` application with the following command:
+docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=secret -p 3306:3306 -d mysql
+
+```
 
 ```sh
-docker exec -it postgres-db psql -U postgres
+docker exec -it mysql-db mysql -u root -p 
 ```
+
+When prompted to `Enter password:` enter `secret` and press return.
 
 Create a new database with the following command:
 
-```sh
+```sql
 CREATE DATABASE tutorial;
 ```
 
-Connect to the new database with the following command:
+Connect to the `tutorial` database with the following command:
 
-```sh
-\c tutorial
+```sql
+USE tutorial;
 ```
 
 Create a new users table with the following command:
 
 ```sql
-CREATE TABLE users(id serial primary key, name text);
+CREATE TABLE users(id INT NOT NULL AUTO_INCREMENT, name text, PRIMARY KEY (id));
 ```
 
 Insert a new row in the `users` table:
@@ -135,9 +138,9 @@ Insert a new row in the `users` table:
 INSERT INTO users(name) VALUES ('James');
 ```
 
-Exit out of the `psql` application with the following command:
+Exit the MySQL command line program:
 
-```sh
+```sql
 \q
 ```
 
@@ -166,7 +169,7 @@ When prompted for the token, enter `token`:
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
-highlight `Add Source` and press enter.
+highlight `Exit` and press enter.
 
 ```sh
 ? What would you like to do? ›
@@ -183,8 +186,8 @@ arrow to highlight `Append only Postgres source` and press return.
   Full SQLite replication source
   Append only SQLite source
   Excel source
-❯ Append only Postgres source ⏎
-  Append only MySQL source
+  Append only Postgres source 
+❯ Append only MySQL source ⏎
   File source
   Cancel
 ```
@@ -192,19 +195,19 @@ arrow to highlight `Append only Postgres source` and press return.
 When prompted for the `Display Name` press return to accept the default name.
 
 ```sh
-? Display name: (Postgres Source) › ⏎
+? Display name: (MySQL Source) › ⏎
 ```
 
-When prompted for the `Postgres username`, enter `postgres` and press return.
+When prompted for the `MySQL username`, enter `root` and press return.
 
 ```sh
-? Postgres username: (user) › postgres ⏎
+? MySQL username: (user) › root ⏎
 ```
 
-When prompted for the `Postgres password`, enter `secret` and press return.
+When prompted for the `MySQL password`, enter `secret` and press return.
 
 ```sh
-? Postgres password: › secret ⏎
+? MySQL password: › secret ⏎
 ```
 
 When prompted for the `Server address`, press return to accept the default value.
@@ -213,10 +216,10 @@ When prompted for the `Server address`, press return to accept the default value
 ? Server address: (localhost) › ⏎
 ```
 
-When prompted for the `Postgres port`, press return to accept the default value.
+When prompted for the `Port`, press return to accept the default value.
 
 ```sh
-? Postgres port: (5432) › ⏎
+? MySQL port: (3306) ›
 ```
 
 When prompted for the `Database name`, enter `tutorial` and press return.
@@ -225,10 +228,10 @@ When prompted for the `Database name`, enter `tutorial` and press return.
 ? Database name: (test) › tutorial ⏎
 ```
 
-When prompted for the `Schema`, press return to accept the default value.
+When prompted for the `Schema`, enter `tutorial` and press return.
 
 ```sh
-? Schema: (public) › ⏎
+? Schema: (public) › tutorial ⏎
 ```
 
 When prompted for the `Tables`, press return to accept the default value.
@@ -237,7 +240,7 @@ When prompted for the `Tables`, press return to accept the default value.
 ? Tables: (*) ›
 ```
 
-When prompted for the `Poll interval (seconds)`, press return to accept the default value.
+When prompted with `Poll interval`, press return to accept the default value.
 
 ```sh
 ? Poll interval (seconds): (5) ›
@@ -341,6 +344,8 @@ highlight `Exit` then press return.
 After exiting the Mycelial CLI, a `config.toml` file will be created in the current
 directory. 
 
+-----------
+
 ### Start the Mycelial Control Plane and Daemon
 
 Run the following command to start the Mycelial Control Plane and Daemon:
@@ -364,13 +369,13 @@ and leave the password field blank.
 
 Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Postgres Source` node onto the canvas.
+1. Drag and drop the `MySQL Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
 3. Drag and drop the `Snowflake Destination` node onto the canvas.
-4. Connect the `Postgres Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
+4. Connect the `MySQL Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
 5. Lastly, press `Publish` to start the workflow.
 
-<img src="/img/postgres_to_snowflake_tutorial.gif" alt="Workflow creation" width="800"/>
+<img src="/img/mysql_to_snowflake_tutorial.gif" alt="Workflow creation" width="800"/>
 
 ## Verify the data was replicated
 
@@ -392,6 +397,6 @@ mycelial destroy
 Run the following commands to stop and remove the Postgres database:
 
 ```sh
-docker stop postgres-db
-docker rm postgres-db
+docker stop mysql-db
+docker rm mysql-db
 ```
