@@ -5,7 +5,7 @@ sidebar_position: 4
 # Frequently Asked Questions
 
 <details>
-  <summary>What do I need to get started using Mycelial</summary>
+  <summary>What do I need to get started using Mycelial?</summary>
 
   You can use Mycelial today and you don't even need to create an account.
   Follow this [tutorial](./tutorial.md) to start using Mycelial right now.
@@ -81,7 +81,7 @@ your workflow.
 </details>
 
 <details>
-  <summary>What's the best way to try out Mycelial</summary>
+  <summary>What's the best way to try out Mycelial?</summary>
 
 We've got a full [tutorial](./tutorial.md) that demonstrates connecting a SQLite
 data source to a postgres destination.
@@ -89,7 +89,7 @@ data source to a postgres destination.
 </details>
 
 <details>
-  <summary>Can I connect different types of sources and destinations</summary>
+  <summary>Can I connect different types of sources and destinations?</summary>
 
   Yes, Mycelial is designed to move data between disparate data systems.
 
