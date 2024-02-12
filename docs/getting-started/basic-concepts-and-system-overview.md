@@ -6,7 +6,7 @@ title: Basic Concepts and System Overview
 
 # Introduction to Mycelial
 
-Mycelial is engineered to address the requirements of data transfer, offering seamless integration with both cloud-based systems, such as Snowflake, and open-source platforms, including Postgres. A distinguishing feature of Mycelial is its capacity to manage edge data, a capability previously unavailable in the market.
+Mycelial is engineered to address the requirements of data transfer, offering seamless integration with cloud-based systems, such as Snowflake, open-source platforms, including Postgres, and local databases, such as SQLite. A distinguishing feature of Mycelial is its capacity to manage edge data, a capability previously unavailable in the market.
 
 # Mycelial Functionality
 
