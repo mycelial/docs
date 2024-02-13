@@ -6,6 +6,8 @@ title: Architecture
 
 # Architecture
 
+![Mycelial Architecture](./mycelial_architecture.png)
+
 ## Introduction
 
 ### Purpose of the Document
@@ -152,7 +154,6 @@ Mycelial offers a framework for developing custom connectors, enabling users to 
 ### Performance and Optimization
 Connector performance is critical for overall system efficiency. Mycelial connectors are optimized for high throughput and low latency, ensuring that data movement does not become a bottleneck in the data workflow.
 
-------------
 ## Transforms
 
 ### Definition and Functionality
@@ -180,10 +181,10 @@ Transforms are tightly integrated with the Mycelial Daemons, allowing for seamle
 ### Development and Customization
 
 #### Custom Transform Development
-Mycelial offers a framework for developing custom transforms, enabling users to tailor data processing to specific needs and scenarios.
+Mycelial offers a framework for developing custom transforms (coming soon), enabling users to tailor data processing to specific needs and scenarios.
 
 #### Language and Tool Support
-Transforms can be developed using the Python programming language.
+Transforms can be developed using the Python programming language (coming soon).
 
 ### Performance Considerations
 
@@ -221,31 +222,43 @@ This section outlines the sequential stages of data handling within the Mycelial
 
 ## Deployment and Operation
 
+This section provides guidance on deploying and operating the Mycelial Software
+system. It covers system requirements, installation procedures, configuration
+steps, and operational best practices designed to ensure a smooth and efficient
+setup.
+
 ### System Requirements
-Before deployment, ensure that the system meets the necessary hardware and software requirements. This includes adequate processing power, memory, storage, and network capabilities, along with compatible operating systems and supporting software libraries.
-Because Mycelial software is written in Rust, it can be deployed on a wide range of operating systems, including Linux, Windows, and macOS and it has very low resource requirements.
+
+Before initiating the deployment, verify that your environment meets the following requirements:
+- **Operating Systems**: Linux (x86, arm, arm64), Windows (x86), macOS (x86, arm64).
+- **Disk Space**: At least 30MB for Mycelial Daemons and 10MB for the Mycelial Control Plane.
+- **Memory**: At least 15MB of RAM for Mycelial Daemons and 10MB of RAM for the Mycelial Control Plane.
+- **Network**: Ideally you should have a reliable internet or network connection for communication between components, however Mycelial is tolerant to network outages and can minimally continue to operate without a network connection and continue normal operations when the network connection is restored.
 
 ### Installation Process
-The installation of the Mycelial software involves:
 
-- Downloading the latest version of the Mycelial [CLI](../getting-started/CLI.md).
-- Running the installation command with the necessary configurations.
+1. **Download the Installation Package**: Obtain the latest version of the Mycelial software from the [CLI](../getting-started/CLI.md).
+2. **Install the Software**: Execute the CLI installation command and follow the prompts to set up the Mycelial Daemons and Control Plane.
+3. **Verify Installation**: Ensure the Mycelial Daemons and Control Plane services are running correctly by checking their status. If you encounter any issues, refer to the associated logs.
 
 ### Configuration and Customization
-Post-installation, the system needs to be configured:
 
-- Setting up the Mycelial Control Plane with appropriate parameters.
-- Configuring Mycelial Daemons and Connectors based on specific data sources and destinations.
-- Customizing settings for performance optimization and security.
+- **Daemon Configuration**: Define data sources and destinations via the [CLI](../getting-started/CLI.md) or by manually editing the Daemons `config.toml` file.
+- **Mycelial Control Plane Configuration**: Access the web UI to configure the Control Plane, which largely entails connecting data sources to destinations often via transorms.
 
 ### Operational Best Practices
-For effective operation, adhere to best practices:
 
-- Regularly updating the software to the latest version.
-- Monitoring system performance and addressing any inefficiencies.
-- Implementing backup and recovery procedures to safeguard data.
+- **Regular Updates**: Keep the Mycelial software up-to-date by regularly checking for and applying updates and patches. This can be done using the Mycelial [CLI](../getting-started/CLI.md).
+- **Performance Monitoring**: Utilize the OS monitoring tools track system performance and address any issues proactively.
+- **Backup and Recovery**: Implement backup procedures for configuration files, databases, and other critical components to ensure data integrity and system recovery capabilities.
 
-This section provides guidance on the deployment and operational aspects of the Mycelial software, ensuring a smooth setup and efficient ongoing management of the system.
+### Troubleshooting
+
+- **Documentation and Resources**: Refer to the Mycelial documentation for troubleshooting guides, FAQ, and best practices.
+- **Community and Forums**: Engage with the Mycelial community through forums, [Discord channels](https://discord.gg/mycelial), or social media for support and advice.
+- **Professional Support**: For complex issues or deployment assistance, contact Mycelial for professional support services.
+
+Deploying and operating Mycelial Software involves careful planning and adherence to the recommended practices outlined in this section. By following these guidelines, you can ensure a successful implementation and maintain an efficient, secure, and scalable data movement system.
 
 ## Security and Compliance
 
@@ -254,12 +267,12 @@ Implementing robust security measures is critical to protect data within the Myc
 
 - Encryption of data.
 - Implementation of authentication and authorization protocols.
-- Regular security audits and vulnerability assessments.
+- Regular security audits and vulnerability assessments. This can be accomplished Operating System level security tools such as SELinux, AppArmor, and others.
 
 ### Auditing and Logging
 Maintaining detailed logs and audit trails is essential for security and compliance. This includes:
 
-- Logging all access and modifications to data.
+- Logging all access and modifications to data as appropriate.
 - Providing tools for audit trail analysis and reporting.
 - Using logging data to detect and respond to security incidents.
 
@@ -273,6 +286,8 @@ To ensure the Mycelial system meets operational requirements, key performance me
 - Data throughput rates and processing speeds.
 - Latency measurements for data movement.
 - Resource utilization efficiency (CPU, memory, network).
+
+Because Mycelial is written in Rust, it is highly efficient and has very low resource requirements. The Mycelial Daemon requires around 30MB of disk space and it usually consumes less than 15MB of RAM. The Mycelial Control Plane requires around 10MB of disk space and it usually consumes less than 10MB of RAM.
 
 ### Scalability Strategies
 The Mycelial system is designed for scalability, accommodating varying data volumes and user demands. Scalability strategies include:
@@ -316,5 +331,3 @@ Regular updates and patches are vital for system security and functionality. Thi
 Mycelial software updates and patches are managed through the Mycelial [CLI](../getting-started/CLI.md). The CLI provides a simple interface for updating the Mycelial Control Plane and Daemons to the latest version.
 
 This section serves as a comprehensive guide for troubleshooting and support, offering users the necessary resources and knowledge to address issues and maintain the Mycelial system's smooth operation.
-
-![Mycelial Architecture](./mycelial_architecture.png)

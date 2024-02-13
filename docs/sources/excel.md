@@ -10,9 +10,11 @@ install the Mycelial Daemon on a computer that has access to the Excel file.
 Refer to the [CLI](../getting-started/CLI.md) documentation for instructions on
 how to install the Mycelial Daemon.
 
-**NOTE**: The Excel connector sends the entire dataset to the destination upon 
+:::danger Note
+The Excel connector sends the entire dataset to the destination upon 
 every update (save). This can have unintended consequences if used with append-only 
 destinations such as SQLite.
+:::
 
 ## Configuration
 
