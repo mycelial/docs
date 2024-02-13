@@ -150,7 +150,6 @@ arrow to highlight `Excel source` and press return.
 
 ```sh
 ? What type of source would you like to add? ›
-  Full SQLite replication source
   Append only SQLite source
 ❯ Excel source ⏎
   Append only Postgres source
@@ -198,7 +197,6 @@ down arrow to hightlight `Snowflake destination` and press return.
 
 ```sh
 ? What type of destination would you like to add? ›
-  Full SQLite replication destination
   Append only SQLite destination
   Append only Postgres destination
   Append only MySQL destination
