@@ -10,9 +10,11 @@ install the Mycelial Daemon on a computer that has access to the Excel file.
 Refer to the [CLI](../getting-started/CLI.md) documentation for instructions on
 how to install the Mycelial Daemon.
 
-**NOTE**: The Excel connector sends the entire dataset to the destination upon 
+:::danger Note
+The Excel connector sends the entire dataset to the destination upon 
 every update (save). This can have unintended consequences if used with append-only 
 destinations such as SQLite.
+:::
 
 ## Configuration
 
@@ -133,12 +135,12 @@ arrow to highlight `Excel source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-  Full SQLite replication source
   Append only SQLite source
 ❯ Excel source ⏎
   Append only Postgres source
   Append only MySQL source
   File source
+  Cancel
 ```
 
 When prompted for the `Display Name` press return (⏎) to accept the default or
@@ -206,7 +208,6 @@ arrow to highlight `Excel source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-  Full SQLite replication source
   Append only SQLite source
 ❯ Excel source ⏎
   Append only Postgres source
@@ -258,7 +259,6 @@ arrow to highlight `Exit` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-  Full SQLite replication source
   Append only SQLite source
   Excel source 
   Append only Postgres source

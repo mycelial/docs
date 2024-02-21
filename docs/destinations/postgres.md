@@ -131,13 +131,13 @@ down arrow to highlight `Append only Postgres destination` and press return (⏎
 
 ```sh
 ? What type of destination would you like to add? ›
-  Full SQLite replication destination
   Append only SQLite destination
 ❯ Append only Postgres destination ⏎
   Append only MySQL destination
   Kafka destination
   Snowflake destination
   File destination
+  Cancel
 ```
 
 When prompted for the `Display Name` press return (⏎) to accept the default or
@@ -209,7 +209,6 @@ down arrow to highlight `Append only Postgres destination` and press return (⏎
 
 ```sh
 ? What type of destination would you like to add? ›
-  Full SQLite replication destination
   Append only SQLite destination
 ❯ Append only Postgres destination ⏎
   Append only MySQL destination
@@ -266,7 +265,6 @@ down arrow to highlight `Exit` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
-  Full SQLite replication destination
   Append only SQLite destination
   Append only Postgres destination
   Append only MySQL destination
