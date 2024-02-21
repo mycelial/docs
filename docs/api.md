@@ -5,7 +5,7 @@ title: APIs
 ---
 # Mycelial API
 
-## Pipeline Specification (workflows)
+## Workflow Specification
 
 <details>
   <summary><code>POST</code> <code><b>/api/pipe</b></code> <code>Creates a pipe config</code></summary>
@@ -36,7 +36,7 @@ title: APIs
         {
           "name": "sqlite_physical_replication_source",
           "label": "sqlite_physical_replication_source node",
-          "client": "{client name}",
+          "client": "{daemon name}",
           "type": "sqlite_physical_replication",
           "display_name": "[display name]",
           "journal_path": "[path and filename of source journal]"
@@ -103,7 +103,7 @@ title: APIs
 ### Example cURL
 
 > ```bash
->  curl -X POST 'http://[server]:7777/api/pipe' -H 'Authorization: Basic [(base 64 token):]' --data @post.json'
+>  curl -X POST 'http://[control plane]:7777/api/pipe' -H 'Authorization: Basic [(base 64 token):]' --data @post.json'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -143,7 +143,7 @@ echo -n 'token' | base64
         {
           "name": "sqlite_physical_replication_source",
           "label": "sqlite_physical_replication_source node",
-          "client": "[client name]",
+          "client": "[daemon name]",
           "type": "sqlite_physical_replication",
           "display_name": "[display name]",
           "journal_path": "[path and filename of source journal]"
@@ -210,7 +210,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl -X POST 'http://[server]:7777/api/pipe/1' -H 'Authorization: Basic [(base 64 token):]' --data @post.json'
+>  curl -X POST 'http://[control plane]:7777/api/pipe/1' -H 'Authorization: Basic [(base 64 token):]' --data @post.json'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -237,7 +237,7 @@ echo -n 'token' | base64
 ##### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/pipe/[id]' -X 'DELETE' -H 'Authorization: Basic [(base 64 token):]' \
+>  curl 'http://[control plane]:7777/api/pipe/[id]' -X 'DELETE' -H 'Authorization: Basic [(base 64 token):]' \
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -249,7 +249,7 @@ echo -n 'token' | base64
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/api/pipe/[id]</b></code> <code>fetch a single pipeline specification by id</code></summary>
+ <summary><code>GET</code> <code><b>/api/pipe/[id]</b></code> <code>fetch a single workflow specification by id</code></summary>
 
 ##### Parameters
 
@@ -264,7 +264,7 @@ echo -n 'token' | base64
 ##### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/pipe/[id]' -H 'Authorization: Basic [(base 64 token):]'
+>  curl 'http://[control plane]:7777/api/pipe/[id]' -H 'Authorization: Basic [(base 64 token):]'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -276,7 +276,7 @@ echo -n 'token' | base64
 </details>
 
 <details>
- <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>fetch all active pipeline specifications</code></summary>
+ <summary><code>GET</code> <code><b>/api/pipe</b></code> <code>fetch all active workflow specifications</code></summary>
 
 ##### Parameters
 
@@ -291,7 +291,7 @@ echo -n 'token' | base64
 ##### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/pipe' -H 'Authorization: Basic [(base 64 token):]'
+>  curl 'http://[control plane]:7777/api/pipe' -H 'Authorization: Basic [(base 64 token):]'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -304,10 +304,10 @@ echo -n 'token' | base64
 
 ---
 
-## Clients
+## Daemons
 
 <details>
-  <summary><code>GET</code> <code><b>/api/clients</b></code> <code>List of registered clients</code></summary>
+  <summary><code>GET</code> <code><b>/api/clients</b></code> <code>List of registered daemons</code></summary>
 
 ### Headers
 
@@ -332,8 +332,8 @@ echo -n 'token' | base64
 > {
 >     "clients": [
 >         {
->             "id": "dev_client",
->             "display_name": "Client 1",
+>             "id": "dev_daemon",
+>             "display_name": "Daemon 1",
 >             "sources": [
 >                 {
 >                     "type": "sqlite_physical_replication",
@@ -365,7 +365,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/clients' -H 'Authorization: Basic [(base 64 token):]'
+>  curl 'http://[control plane]:7777/api/clients' -H 'Authorization: Basic [(base 64 token):]'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -412,7 +412,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/workspaces' -H 'Authorization: Basic [(base 64 token):]'
+>  curl 'http://[control plane]:7777/api/workspaces' -H 'Authorization: Basic [(base 64 token):]'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -479,7 +479,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl 'http://[server]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]'
+>  curl 'http://[control plane]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -515,7 +515,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl -X POST 'http://[server]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]' --data-raw $'{"name":"new"}'
+>  curl -X POST 'http://[control plane]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]' --data-raw $'{"name":"new"}'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -556,7 +556,7 @@ echo -n 'token' | base64
 ### Example cURL
 
 > ```bash
->  curl -X PUT 'http://[server]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]' --data-raw $'{"name":"rename"}'
+>  curl -X PUT 'http://[control plane]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]' --data-raw $'{"name":"rename"}'
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:
@@ -593,7 +593,7 @@ echo -n 'token' | base64
 
 ### Example cURL
 > ```bash
->  curl -X DELETE 'http://[server]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]''
+>  curl -X DELETE 'http://[control plane]:7777/api/workspaces/1' -H 'Authorization: Basic [(base 64 token):]''
 > ```
 
 **NOTE**: to generate a base64 encoded token (ie (base 64 token) above), use the following command:

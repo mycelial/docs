@@ -1,40 +1,37 @@
 ---
-sidebar_position: 2
-id: sqlite
-title: SQLite
+sidebar_position: 7
+id: file
+title: File
 ---
 
-# SQLite
+# File
 
-The SQLite destination allows you to write data from various data sources.
+The file destination allows you to write data to a file. This destination is
+used in conjunction with the [file source](../sources/file).
 
-To use the SQLite destination, you will need to install the Mycelial Daemon on
-the computer that has the SQLite database. Refer to the
+To use the file destination, you will need to install the Mycelial Daemon on the
+computer that has access to the file. Refer to the
 [CLI](../getting-started/CLI.md) documentation for instructions on how to
 install the Mycelial Daemon.
 
 ## Configuration
 
 The Mycelial Daemon uses a TOML configuration file to specify the data sources
-and destinations that it has available to it. To add SQLite as a data destination,
-you will need to add a section to the TOML file (`config.toml`) that looks like
-this:
+and destinations that it has available to it. To add a file as a data
+destination, you will need to add a section to the TOML file (`config.toml`)
+that looks like this:
 
 ```toml
 [[destinations]]
-type = "sqlite_connector"
-display_name = "Sqlite Destination"
-path = "/path/to/sqlite/destination.db"
+type = "file"
+display_name = "file destination"
+path = "/path/to/file.csv"
 ```
-
-**NOTE**: You can manually add the above table to the `config.toml` file or you
-can use the `mycelial add --destination` command to add the destination to an
-existing config file.
 
 ### type
 
 The `type` field specifies the type of data destination, in this case it is
-`sqlite_connector`.
+`file`.
 
 ### display_name
 
@@ -43,7 +40,7 @@ interface and via the API.
 
 ### path
 
-The `path` field is the path to the SQLite database file.
+The `path` field is the path to the file.
 
 ## Configuration via CLI
 
@@ -56,7 +53,7 @@ install the Mycelial CLI.
 ### Creating a new `config.toml` file
 
 If you are creating a new `config.toml` file, you can use the Mycelial CLI to
-generate the file and add the SQLite destination to it. To do this, run the
+generate the file and add the file destination to it. To do this, run the
 following command:
 
 ```sh
@@ -82,9 +79,10 @@ or enter a daemon ID and press return (⏎).
 ? Daemon ID: (daemon)› ⏎
 ```
 
-When prompted for the `Control Plane:` press return (⏎) to accept the default value or
-enter the URL of the control plane and press return (⏎). If you are just trying
-out Mycelial, you should press return (⏎) to accept the default value.
+When prompted for the `Control Plane:` press return (⏎) to accept the default
+value or enter the URL of the control plane and press return (⏎). If you are
+just trying out Mycelial, you should press return (⏎) to accept the default
+value.
 
 ```sh
 ? Control Plane: (http://localhost:7777) › ⏎
@@ -108,16 +106,16 @@ highlight `Add Destination` and press return (⏎).
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only SQLite destination` and press return (⏎).
+down arrow to highlight `File destination` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
-❯ Append only SQLite destination ⏎
+  Append only SQLite destination 
   Append only Postgres destination
   Append only MySQL destination
   Kafka destination
   Snowflake destination
-  File destination
+❯ File destination ⏎
   Cancel
 ```
 
@@ -126,13 +124,13 @@ enter a name for your destination and press return (⏎). The display name is th
 name that will be displayed in the Mycelial user interface and via the API.
 
 ```sh
-? Display name: (SQLite Append Only Destination) › ⏎
+? Display name: (file destination) › ⏎
 ```
 
-When prompted for the `Database Path`, enter the destination database name.
+When prompted for the `Path` enter the path to the file and press return (⏎).
 
 ```sh
-? Database Path: (destination.db) › /path/to/sqlite/destination.db ⏎
+? Path: (file.txt) › /path/to/file.csv ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -150,7 +148,7 @@ After exiting the CLI will generate a `config.toml`.
 ### Appending to an existing `config.toml` file
 
 If you already have a `config.toml` file, you can use the Mycelial CLI to add
-the SQLite destination. To do this, run the following command from the same
+the File destination. To do this, run the following command from the same
 directory as the `config.toml` file:
 
 ```sh
@@ -158,17 +156,17 @@ mycelial add --destination
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only SQLite destination` and press return (⏎).
+down arrow to highlight `File destination` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
-❯ Append only SQLite destination ⏎
+  Append only SQLite destination 
   Append only Postgres destination
   Append only MySQL destination
   Kafka destination
   Snowflake destination
-  File destination
-  Exit
+❯ File destination ⏎
+  Exit 
 ```
 
 When prompted for the `Display Name` press return (⏎) to accept the default or
@@ -176,13 +174,13 @@ enter a name for your destination and press return (⏎). The display name is th
 name that will be displayed in the Mycelial user interface and via the API.
 
 ```sh
-? Display name: (SQLite Append Only Destination) › ⏎
+? Display name: (file destination) › ⏎
 ```
 
-When prompted for the `Database Path`, enter the destination database name.
+When prompted for the `Path` enter the path to the file and press return (⏎).
 
 ```sh
-? Database Path: (destination.db) › /path/to/sqlite/destination.db ⏎
+? Path: (file.txt) › /path/to/file.csv ⏎
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
@@ -206,5 +204,5 @@ After exiting the CLI will save the modified `config.toml`.
 After you have added the SQLite destination to the `config.toml` file, either
 manually or via the CLI, you can [start](../getting-started/CLI.md#starting) the
 Mycelial Daemon. Once the daemon is running, you can open the Mycelial control
-plane web interface and you should see the SQLite destination listed in the
-destination section.
+plane web interface and you should see the file destination listed in the
+sources section.

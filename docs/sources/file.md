@@ -1,38 +1,33 @@
 ---
-sidebar_position: 2
-id: sqlite
-title: SQLite
+sidebar_position: 6
+id: file
+title: File
 ---
 
-# SQLite Append Only
+# File
 
-The SQLite append only source allows you to read data from a SQLite database. 
-Currently, Mycelial only supports SQLite databases that are append only.
-
-To use the SQLite append only source, you will need to install the Mycelial 
-Daemon on the computer that has the SQLite database. Refer to the 
-[CLI](../getting-started/CLI.md) documentation for instructions on how to
-install the Mycelial Daemon.
+The File source allows you to read data from a file and write it to a
+destination. The file source is used in conjunction with the [file
+destination](../destinations/file).
 
 ## Configuration
 
 The Mycelial Daemon uses a TOML configuration file to specify the data sources
-and destinations that it has available to it. To add SQLite as a data source,
+and destinations that it has available to it. To add a File as a data source,
 you will need to add a section to the TOML file (`config.toml`) that looks like
 this:
 
 ```toml
-...
 [[sources]]
-type = "sqlite_connector"
-display_name = "Sqlite Source"
-path = "/path/to/sqlite/source.db"
+type = "file"
+display_name = "file source"
+path = "/path/to/file.csv"
 ```
 
 ### type
 
 The `type` field specifies the type of data source, in this case it is
-`sqlite_connector`.
+`file`.
 
 ### display_name
 
@@ -41,7 +36,7 @@ interface and via the API.
 
 ### path
 
-The `path` field is the path to the SQLite database file.
+The `path` field is the path to the file.
 
 ## Configuration via CLI
 
@@ -106,15 +101,15 @@ highlight `Add Source` and press return (⏎).
 ```
 
 When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Append only SQLite source` and press return (⏎).
+arrow to highlight `File source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-❯ Append only SQLite source ⏎
+  Append only SQLite source 
   Excel source
   Append only Postgres source
   Append only MySQL source
-  File source
+❯ File source ⏎
   Cancel
 ```
 
@@ -123,13 +118,13 @@ enter a display name and press return (⏎) . The display name is the name that
 will be displayed in the Mycelial user interface and via the API.
 
 ```sh
-? Display name: (SQLite Append Only Source) › ⏎
+? Display name: (file source) › ⏎
 ```
 
-When prompted for the `Database Path`, enter the source database name.
+When prompted for the `Path` enter the path to the file and press return (⏎).
 
 ```sh
-? Database Path: (data.db) › /path/to/the/source.db ⏎
+? Path: (file.txt) › /path/to/file.csv ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -159,12 +154,12 @@ arrow to highlight `Append only SQLite source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-❯ Append only SQLite source ⏎
+  Append only SQLite source
   Excel source
   Append only Postgres source
   Append only MySQL source
   File source
-  Exit
+❯ Exit ⏎
 ```
 
 When prompted for the `Display Name` press return (⏎) to accept the default or
@@ -172,13 +167,13 @@ enter a display name and press return (⏎) . The display name is the name that
 will be displayed in the Mycelial user interface and via the API.
 
 ```sh
-? Display name: (SQLite Append Only Source) › ⏎
+? Display name: (file source) › ⏎
 ```
 
-When prompted for the `Database Path`, enter the source database name.
+When prompted for the `Path` enter the path to the file and press return (⏎).
 
 ```sh
-? Database Path: (data.db) › source.db ⏎
+? Path: (file.txt) › /path/to/file.csv ⏎
 ```
 
 When prompted with `What type of source would you like to add?`, press the down
@@ -198,9 +193,8 @@ After exiting the CLI will save the modified `config.toml`.
 
 ## Usage
 
-After you have added the SQLite source to the `config.toml` file, either
+After you have added the File source to the `config.toml` file, either
 manually or via the CLI, you can [start](../getting-started/CLI.md#starting) the
 Mycelial Daemon. Once the daemon is running, you can open the Mycelial control
-plane web interface and you should see the SQLite source listed in the sources
+plane web interface and you should see the File source listed in the sources
 section.
-

@@ -6,7 +6,7 @@ title: Excel to Snowflake
 
 # Excel to Snowflake tutorial
 
-This tutorial will walk you through the process of setting up a data pipeline
+This tutorial will walk you through the process of setting up a data workflow
 that moves data from an Excel spreadsheet to Snowflake.
 
 ## Prerequisites
@@ -31,47 +31,65 @@ Follow the below instructions to install the Mycelial CLI:
 <details>
   <summary>Linux</summary>
 
-  <h4>Debian Based Linux x86_64</h4>
+  <details>
+  <summary>Debian Based Linux x86_64</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_amd64.deb --output mycelial_amd64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.deb --output mycelial_amd64.deb
   dpkg -i ./mycelial_amd64.deb
   ```
 
-  <h4>Debian Based Linux ARM64</h4>
+  </details>
+
+  <details>
+  <summary>Debian Based Linux ARM64</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_arm64.deb --output mycelial_arm64.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.deb --output mycelial_arm64.deb
   dpkg -i ./mycelial_arm64.deb
   ```
 
-  <h4>Debian Based Linux ARM</h4>
+  </details>
+
+  <details>
+  <summary>Debian Based Linux ARM</summary>
 
   ```sh
-  curl -L https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial_0.5.1_armhf.deb --output mycelial_armhf.deb
+  curl -L https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.deb --output mycelial_armhf.deb
   dpkg -i ./mycelial_armhf.deb
   ```
 
-  <h4>Redhat Based Linux x86_64</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux x86_64</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.x86_64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.x86_64.rpm 
   ```
 
-  <h4>Redhat Based Linux ARM64</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux ARM64</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.arm64.rpm 
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.arm64.rpm 
   ```
 
-  <h4>Redhat Based Linux ARM</h4>
+  </details>
+
+  <details>
+  <summary>Redhat Based Linux ARM</summary>
 
   ```sh
-  yum install https://github.com/mycelial/cli/releases/download/v0.5.1/mycelial-v0.5.1-1.armhf.rpm
+  yum install https://github.com/mycelial/cli/releases/latest/download/mycelial-v-1.armhf.rpm
   ```
 
+  </details>
 
 </details>
+
 
 ## Create a demo directory
 
@@ -84,16 +102,16 @@ cd excel-demo
 
 Create a new Excel file and add the following data to the first worksheet:
 
-| Name | Age | Favorite Color |
-| ---- | --- | -------------- |
-| John | 25  | Blue           |
-| Jane | 30  | Red            |
+| Name | Age | Color |
+| ---- | --- | ----- |
+| John | 25  | Blue  |
+| Jane | 30  | Red   |
 
 Rename the worksheet to `people`.
 
 Save the file as `people.xlsx` in the `excel-demo` directory.
 
-## Download, Configure and Start the Mycelial Control Plane (server) and Daemon (client)
+## Download, Configure and Start the Mycelial Control Plane and Daemon
 
 Run the following Mycelial CLI command:
 
@@ -101,14 +119,14 @@ Run the following Mycelial CLI command:
 mycelial init --local
 ```
 
-Running the above command will download both the control plane (server) and the
+Running the above command will download both the control plane (control plane) and the
 daemon then you will be prompted with a series of questions. Press enter (⏎) to
 accept the default values as shown below:
 
 ```sh
-? Client Name: (My Client) › ⏎
-? Client ID: (client) › ⏎
-? Server: (http://localhost:7777) › ⏎
+? Daemon Name: (My Daemon)› ⏎
+? Daemon ID: (daemon)› ⏎
+? Control Plane: (http://localhost:7777) › ⏎
 ```
 
 When prompted for the token, enter `token`:
@@ -122,41 +140,144 @@ highlight `Exit` and press enter.
 
 ```sh
 ? What would you like to do? ›
+❯ Add Source ⏎
+  Add Destination
+  Exit
+```
+
+When prompted with `What type of source would you like to add?`, press the down
+arrow to highlight `Excel source` and press return.
+
+```sh
+? What type of source would you like to add? ›
+  Append only SQLite source
+❯ Excel source ⏎
+  Append only Postgres source
+  Append only MySQL source
+  File source
+  Cancel
+```
+
+When prompted for the `Display Name` press return to accept the default name.
+
+```sh
+? Display name: (Excel Source) › ⏎
+```
+
+When prompted for the `Excel Path` enter `people.xlsx` and press return.
+
+```sh
+? Excel Path: (data.xlsx) › people.xlsx ⏎
+```
+
+When prompted for the `Sheets`, enter `people` and press return.
+
+```sh
+? Sheets: (*) › people ⏎
+```
+
+When prompted for `Strict`, enter `n` and press return.
+
+```sh
+? Strict: (y/n) › no
+```
+
+When prompted with `What would you like to do?`, press the down arrow key to
+highlight `Add Destination` then press return.
+
+```sh
+? What would you like to do? ›
+  Add Source
+❯ Add Destination ⏎
+  Exit
+```
+
+When prompted with `What type of destination would you like to add?`, press the
+down arrow to hightlight `Snowflake destination` and press return.
+
+```sh
+? What type of destination would you like to add? ›
+  Append only SQLite destination
+  Append only Postgres destination
+  Append only MySQL destination
+  Kafka destination
+❯ Snowflake destination ⏎
+  File destination
+  Cancel
+```
+
+When prompted for the `Display Name` press return to accept the default name.
+
+```sh
+? Display name: (Snowflake Destination) › ⏎
+```
+
+When prompted for the `Snowflake username`, enter your Snowflake username and
+press return.
+
+```sh
+? Snowflake username: › [username] ⏎
+```
+
+When prompted for the `Snowflake password`, enter your Snowflake password and
+press return.
+
+```sh
+? Snowflake password: › [password] ⏎
+```
+
+When prompted for the `Snowflake role`, enter your Snowflake role and press
+return.
+
+```sh
+? Snowflake role: › [role] ⏎
+```
+
+When prompted for the `Snowflake account name`, enter your Snowflake account
+name and press return.
+
+```sh
+? Snowflake account name: › [account123] ⏎
+```
+
+When prompted for the `Snowflake organization name`, enter your Snowflake
+organization name and press return.
+
+```sh
+? Snowflake organization name: › [myorg] ⏎
+```
+
+When prompted for the `Snowflake warehouse`, enter your Snowflake warehouse and
+
+```sh
+? Snowflake warehouse: › [warehouse] ⏎
+```
+
+When prompted for the `Database name`, enter your Snowflake database name and
+press return.
+
+```sh
+? Database name: › [database] ⏎
+```
+
+When prompted for the `Schema`, enter your Snowflake schema name and press return.
+
+```sh
+? Schema: › [schema] ⏎
+```
+
+When prompted with `What would you like to do?`, press the down arrow key to
+highlight `Exit` then press return.
+
+```sh
+? What would you like to do? ›
   Add Source
   Add Destination
-❯ Exit
+❯ Exit ⏎
 ```
 
 After exiting the Mycelial CLI, a `config.toml` file will be created in the current
 directory. 
-
-### Add Excel as a source and Snowflake as a destination
-
-Open the `config.toml` file in your favorite text editor and append the
-following configuration to the file:
-
-```toml
-[[sources]]
-type = "excel_connector"
-display_name = "Excel People Source"
-path = "people.xlsx" 
-strict = false
-sheets = "poeple"
-
-[[destinations]]
-type = "snowflake"
-display_name = "snowflake destination"
-username = "[username]"
-password = "[password]"
-role = "[role]"
-account_identifier = "[myorg-account123]"
-warehouse = "[warehouse]"
-database = "[database]"
-schema = "[schema]"
-```
-
-**NOTE:** Replace the bracked values ([]) with the appropriate values for your
-Snowflake account.
 
 ### Start the Mycelial Control Plane and Daemon
 
@@ -172,20 +293,22 @@ When prompted with `Security Token:`, enter `token`:
 ? Security Token: › token ⏎
 ```
 
-Now navigate to the Mycelial Control Plane in your browser at `http://localhost:7777`.
+Now navigate to the Mycelial Control Plane in your browser at [`http://localhost:7777`](http://localhost:7777).
 
 When prompted for a username and password, enter `token` for for the username
 and leave the password field blank.
 
-### Create a data pipeline
+### Create a data workflow
 
-Now you'll need to create a data pipeline by doing the following steps:
+Now you'll need to create a data workflow by doing the following steps:
 
-1. Drag and drop the `Source: My Client - Excel People Source` node onto the canvas.
+1. Drag and drop the `Excel Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Destination: My Client - Snowflake Destination` node onto the canvas.
-4. Connect the `Excel People Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
-5. Lastly, press `Publish` to start the pipeline.
+3. Drag and drop the `Snowflake Destination` node onto the canvas.
+4. Connect the `Excel Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Snowflake Destination` node.
+5. Lastly, press the `Publish` button to start the workflow.
+
+<img src="/img/tutorial.gif" alt="Workflow creation" width="800"/>
 
 ## Verify the data was replicated
 

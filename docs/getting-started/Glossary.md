@@ -20,14 +20,14 @@ source or destination.
 ## Control Plane
 
 The Mycelial control plane is a server that defines and orchestrates data
-pipeline jobs. You can either install the control plane on one of your servers,
+workflow jobs. You can either install the control plane on one of your servers,
 using our CLI or you can use our cloud-based control plane (coming soon). 
 
-## Pipeline
+## Workflow
 
-A pipeline is a combination of the source and destination data systems. A
-pipeline is essentially a job that moves data from the source to the destination
-data system. The pipeline is created either in the control planes Web interface
+A workflow is a combination of the source and destination data systems. A
+workflow is essentially a job that moves data from the source to the destination
+data system. The workflow is created either in the control planes Web interface
 or via API calls.
 
 ## Command Line Interface (CLI) Application

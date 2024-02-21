@@ -5,7 +5,7 @@ sidebar_position: 4
 # Frequently Asked Questions
 
 <details>
-  <summary>What do I need to get started using Mycelial</summary>
+  <summary>What do I need to get started using Mycelial?</summary>
 
   You can use Mycelial today and you don't even need to create an account.
   Follow this [tutorial](./tutorial.md) to start using Mycelial right now.
@@ -48,7 +48,7 @@ install the daemon near the source/destination, using our CLI.
 <details>
   <summary>What is the Mycelial control plane?</summary>
 
-The Mycelial control plane is a server that orchestrates data pipeline jobs.
+The Mycelial control plane is a server that orchestrates data workflow jobs.
 You can either install the control plane on one of your servers, using our CLI
 or you can use our cloud-based control plane (coming soon). 
 
@@ -75,13 +75,13 @@ After you have configured and started your daemons, the daemons will connect
 with the control plane and publish their available sources and destinations.
 Next, you'll open the web interface to the control plane and then you'll drag 
 and drop the sources and destinations you wish to connect onto the canvas, then
-you'll connect the nodes to create a data pipeline and finally you'll publish
-your pipeline.
+you'll connect the nodes to create a data workflow and finally you'll publish
+your workflow.
 
 </details>
 
 <details>
-  <summary>What's the best way to try out Mycelial</summary>
+  <summary>What's the best way to try out Mycelial?</summary>
 
 We've got a full [tutorial](./tutorial.md) that demonstrates connecting a SQLite
 data source to a postgres destination.
@@ -89,7 +89,7 @@ data source to a postgres destination.
 </details>
 
 <details>
-  <summary>Can I connect different types of sources and destinations</summary>
+  <summary>Can I connect different types of sources and destinations?</summary>
 
   Yes, Mycelial is designed to move data between disparate data systems.
 
