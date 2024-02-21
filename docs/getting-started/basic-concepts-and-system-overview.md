@@ -6,7 +6,12 @@ title: Basic Concepts and System Overview
 
 # Introduction to Mycelial
 
-Mycelial is engineered to address the requirements of data transfer, offering seamless integration with cloud-based systems, such as Snowflake, open-source platforms, including Postgres, and local databases, such as SQLite. A distinguishing feature of Mycelial is its capacity to manage edge data, a capability previously unavailable in the market.
+Mycelial is engineered to move data. It seamlessly integrates with:
+ * Cloud-based systems (Snowflake, Kafka, Redshift, ...)
+ * Open-source platforms (Postgres, Mysql, ...)
+ * Local data sources (SQLite, Excel, local files, ...)
+ 
+Mycelial distinguishes itself by taking an edge data first approach to data movement. 
 
 # Mycelial Functionality
 
@@ -26,13 +31,15 @@ The daemons serve as the primary agents in Mycelial, tasked with extracting data
 
 ## Control Plane
 
-The control plane's role encompasses the creation and management of data workflows. This entails connecting data sources to their respective destinations. 
+The Control Plane is responsible for creating and managing the data workflows that will be executed by the Daemons. This entails connecting data sources to their respective destinations. 
 
-- **Hosting Flexibility:** Mycelial provides versatility in terms of control plane hosting, allowing users the choice between utilizing a Mycelial-provided control plane (coming soon) or deploying it on their own infrastructure.
+- **Hosting Flexibility:** Mycelial provides versatility in terms of Control Plane hosting, allowing users the choice between utilizing a Mycelial-provided Control Plane (coming soon) or deploying it on their own infrastructure.
 
 ### Configuration of Daemons
 
-Configuration of daemons involves specifying the control plane's address, necessary credentials, and the relevant sources and destinations. Upon activation, the daemon establishes a connection with the control plane and communicates its configured sources and destinations. Alternatively, users may configure the daemon through the control plane's web interface.
+Daemons are responsible for connecting to sources and destinations and executing data workflows as provided by the Control Plane. 
+
+Configuration of the Daemons involves specifying the Control Plane's address, necessary credentials, and the relevant sources and destinations. Upon activation, the Daemon establishes a connection with the Control Plane and communicates its configured sources and destinations. Alternatively, users may configure the Daemon through the control plane's web interface.
 
 ### Creating a Data Movement Job
 
@@ -40,7 +47,7 @@ The process of creating a data movement job, or data workflow, is designed to be
 
 - **Interface Options:** Users have the option to visually link a source to a destination using Mycelial's intuitive drag-and-drop web interface or to perform this linkage through API calls.
 
-Once the data workflow is published, the pertinent daemons commence the data transfer in accordance with the specifications of the workflow.
+Once the data workflow is published, the pertinent Daemons commence the data transfer in accordance with the specifications of the workflow.
 
 ## Practical Demonstration
 
