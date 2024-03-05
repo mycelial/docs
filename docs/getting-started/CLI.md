@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 id: CLI
 title: Command Line Interface (CLI)
 ---
@@ -125,7 +125,7 @@ mycelial init --config my_config.toml
 
 Note: if you use a custom config file name (ex. `my_config.toml`), you'll need
 to pass the `--config` flag along with your custom config file name to
-subsequent CLI commands.
+subsequent CLI commands (`start` in particular).
 
 ## Starting
 
@@ -143,7 +143,7 @@ it to the start command like this: `mycelial start --config ./my_config.toml`
 When prompted for a token, use the one you used in the `init` step.
 
 After completing this step, you should be able to open the web interface 
-`http://localhost:7777`.
+`http://localhost:7777` if running the control plane locally.
 
 ## Shutdown
 

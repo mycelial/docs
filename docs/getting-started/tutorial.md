@@ -1,13 +1,13 @@
 ---
 sidebar_position: 2
 id: tutorial
-title: Tutorial
+title: Tutorial - Mycelial Control Plane
 ---
 
-# Mycelial getting started tutorial
+# Mycelial: Getting started with Mycelial Control Plane
 
 In this tutorial you will move data from a SQLite database to a Postgres
-database using Mycelial.
+database using Mycelial as the Control Plane. We will walk you through the installation of SQLite, Docker, Mycelial's CLI and how to connect it all together.
 
 ## Prerequisites
 
@@ -170,12 +170,22 @@ Exit out of the `psql` application with the following command:
 \q
 ```
 
-## Download and start the Mycelial Control plane (server) and daemon
+## Create an Account in the Mycelial App
 
-Run the following Mycelial CLI command:
+Go to [`https://app.mycelial.com`](https://app.mycelial.com) and create an account.
+
+<img src="/img/mycelial-empty-home-screen.png" alt="Empty Home Screen" width="800"/>
+
+## Download and start the Mycelial daemon
+
+Run the Mycelial CLI command from the App:
+
+Copy and Run the initialize command with your Apps unique token (you may need to refresh the screen). It should look like the command below:
+
+<img src="/img/mycelial-init.png" alt="Empty Home Screen" width="800"/>
 
 ```sh
-mycelial init --local
+mycelial init --daemon --endpoint "https://app.mycelial.com" --token "<YOUR TOKEN HERE>"
 ```
 
 Running the above command will download both the control plane (server) and the
@@ -185,13 +195,6 @@ accept the default values as shown below:
 ```sh
 ? Daemon Name: (My Daemon)› ⏎
 ? Daemon ID: (daemon)› ⏎
-? Control Plane: (http://localhost:7777) › ⏎
-```
-
-When prompted for the token, enter `token`:
-
-```sh
-? Security Token: › token ⏎
 ```
 
 When prompted with `What would you like to do?`, press the down arrow to
@@ -205,14 +208,14 @@ highlight `Add Source` and press enter.
 ```
 
 When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Append only SQLite source` and press enter.
+arrow to highlight `SQLite source` and press enter.
 
 ```sh
 ? What type of source would you like to add? ›
-❯ Append only SQLite source ⏎
+❯ SQLite source ⏎
   Excel source
-  Append only Postgres source
-  Append only MySQL source
+  Postgres source
+  MySQL source
   File source
   Cancel
 ```
@@ -220,7 +223,7 @@ arrow to highlight `Append only SQLite source` and press enter.
 When prompted for the `Display Name` press enter to accept the default name.
 
 ```sh
-? Display name: (SQLite Append Only Source) › ⏎
+? Display name: (SQLite Source) › ⏎
 ```
 
 When prompted for the `Tables` press enter to accept the default value.
@@ -250,9 +253,9 @@ down arrow to hightlight `Append only Postgres destination` and press enter.
 
 ```sh
 ? What type of destination would you like to add? ›
-  Append only SQLite destination
-❯ Append only Postgres destination ⏎
-  Append only MySQL destination
+  SQLite destination
+❯ Postgres destination ⏎
+  MySQL destination
   Kafka destination
   Snowflake destination
   File destination
@@ -262,7 +265,7 @@ down arrow to hightlight `Append only Postgres destination` and press enter.
 When prompted with `Display name`, press enter to accept the default.
 
 ```sh
-? Display name: (Postgres Append Only Destination) › ⏎
+? Display name: (Postgres Destination) › ⏎
 ```
 
 When prompted with `Postgres username`, enter `postgres`
@@ -310,30 +313,19 @@ After Exiting the mycelial `CLI`, a `config.toml` file is created.
 Now start both the daemon and control plane by running the command:
 
 ```sh
-mycelial start ⏎
+mycelial start --daemon ⏎
 ```
 
-When prompted for the `Security token` enter `token`.
+Next, you'll be able to create a new workspace in the App and and should see the source and destination in the the control plane web interface at [`https://app.mycelial.com`](https://app.mycelial.com).
 
-```sh
-? Security Token: › token ⏎
-```
-
-Next, you'll open up the control plane web interface at [`http://localhost:7777`](http://localhost:7777).
-
-When prompted to sign in, enter `token` in the username field and leave the
-password field blank, then press enter.
-
-<img src="/img/sign_in.png" alt="Sign in" width="300"/>
-
-When prompted with a workspace, click on the `Default` workspace.
+Please create an account or sign in, and create a Workspace named `My first workspace`.
 
 Now you'll need to create workflow by doing the following steps:
 
-1. Drag and drop the `SQLite Append Only Source` node onto the canvas.
+1. Drag and drop the `SQLite Source` node onto the canvas.
 2. Drag and drop the `Mycelial Server` node onto the canvas.
-3. Drag and drop the `Postgres Append Only Destination` node onto the canvas.
-4. Connect the `SQLite Append Only Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Append Only Destination` node.
+3. Drag and drop the `Postgres Destination` node onto the canvas.
+4. Connect the `SQLite Source` to the `Mycelial Server` and then connect the `Mycelial Server` to the `Postgres Destination` node.
 5. Lastly, press the `Publish` button to start the workflow.
 
 <img src="/img/tutorial.gif" alt="Workflow creation" width="800"/>
@@ -370,7 +362,7 @@ Enter the below command to exit out of the `psql` CLI tool.
 ## Cleanup
 
 
-Enter the following command to terminate the control plane and the daemon:
+Enter the following command to terminate the daemon:
 
 ```sh
 mycelial destroy
