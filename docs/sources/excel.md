@@ -76,49 +76,13 @@ You will need to have the Mycelial CLI installed. Refer to the
 [CLI](../getting-started/CLI.md) documentation for instructions on how to
 install the Mycelial CLI.
 
-### Creating a new `config.toml` file
+### Create a new `config.toml` file or add to an existing one
 
-If you are creating a new `config.toml` file, you can use the Mycelial CLI to
-generate the file and add the Excel source. To do this, run the following 
-command:
+If you are creating a new `config.toml` file, you can use the Mycelial CLI [`init`](../getting-started/CLI#initialization) command to generate the file and add the source. 
 
-```sh
-mycelial init --local
-```
+If you are adding to an existing config file you can use the Mycelial CLI [`add`](../getting-started/CLI#adding-new-sourcesdestinations) command to add the source to the existing config. 
 
-Running the above command will download both the [Control
-plane](../core-concepts/Control-Plane) and the
-[Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
-to generate the `config.toml` file.
-
-When prompted for the `Daemon Name:` press return (⏎) to accept the default
-value or enter a name for your daemon and press return (⏎).
-
-```sh
-? Daemon Name: (My Daemon)› ⏎
-```
-
-When prompted for the `Daemon ID:` press return (⏎) to accept the default value
-or enter a daemon ID and press return (⏎).
-
-```sh
-? Daemon ID: (daemon)› ⏎
-```
-
-When prompted for the `Control Plane:` press return (⏎) to accept the default value or
-enter the URL of the control plane and press return (⏎). If you are just trying
-out Mycelial, you should press return (⏎) to accept the default value.
-
-```sh
-? Control Plane: (http://localhost:7777) › ⏎
-```
-
-When prompted for the `Security Token:` enter a token and press return (⏎). If 
-you are just trying out Mycelial, enter `token` and press return (⏎).
-
-```sh
-? Security Token: › token ⏎
-```
+### Choose source config options
 
 When prompted with `What would you like to do?`, press the down arrow to
 highlight `Add Source` and press return (⏎).
@@ -135,10 +99,10 @@ arrow to highlight `Excel source` and press return (⏎).
 
 ```sh
 ? What type of source would you like to add? ›
-  Append only SQLite source
+  SQLite source
 ❯ Excel source ⏎
-  Append only Postgres source
-  Append only MySQL source
+  Postgres source
+  MySQL source
   File source
   Cancel
 ```
@@ -191,83 +155,7 @@ highlight `Exit` and press return (⏎).
 ❯ Exit ⏎
 ```
 
-After exiting the CLI will generate a `config.toml`.
-
-### Appending to an existing `config.toml` file
-
-If you already have a `config.toml` file, you can use the Mycelial CLI to add
-the Excel source. To do this, run the following command from the same directory
-as the `config.toml` file:
-
-```sh
-mycelial add --source
-```
-
-When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Excel source` and press return (⏎).
-
-```sh
-? What type of source would you like to add? ›
-  Append only SQLite source
-❯ Excel source ⏎
-  Append only Postgres source
-  Append only MySQL source
-  File source
-  Exit
-```
-
-When prompted for the `Display Name` press return (⏎) to accept the default or
-enter a display name and press return (⏎) . The display name is the name that
-will be displayed in the Mycelial user interface and via the API.
-
-```sh
-? Display name: (Excel Source) ›
-```
-
-When prompted for the `Path` enter the path to the Excel file or a GLOB pattern
-to specify a set of Excel files. For example, you could use the following path
-to specify a specific Excel file: `/path/to/excel/file.xlsx` or you could use
-the following path to specify all Excel files in a directory:
-`/path/to/excel/files/*.xlsx` or you could use the following path to specify all
-Excel files in a directory and all subdirectories:
-`/path/to/excel/files/**/*.xlsx`.
-
-```sh
-? Excel Path: (data.xlsx) › /path/to/excel/file.xlsx ⏎
-```
-
-When prompted for the `Sheets` press return (⏎) to accept the default (*) for
-all sheets or enter a comma separated list of sheet names that you wish to
-export.
-
-```sh
-? Sheets: (*) › ⏎
-```
-
-When prompted for the `Strict` enter `y` or `n`. The `strict` field deals with
-handling mixed data types in a column. If `strict` is set to `true`, then
-Mycelial will attempt to maintain the data type of the cells in a column. If
-`strict` is set to `false`, then Mycelial will attempt to convert all cells to a
-string.
-
-```sh
-? Strict: (y/n) › no ⏎
-```
-
-When prompted with `What type of source would you like to add?`, press the down
-arrow to highlight `Exit` and press return (⏎).
-
-```sh
-? What type of source would you like to add? ›
-  Append only SQLite source
-  Excel source 
-  Append only Postgres source
-  Append only MySQL source
-  File source
-❯ Exit ⏎
-```
-
-After exiting the CLI will save the modified `config.toml`.
+After exiting the CLI will generate or save the modified `config.toml`.
 
 ## Usage
 

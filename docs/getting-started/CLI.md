@@ -7,17 +7,15 @@ title: Command Line Interface (CLI)
 # Mycelial Command Line Interface (CLI)
 
 The CLI application is designed to ease the process of setting up and using
-Mycelial, the edge data movement platform. At it's core, the CLI application
-enables users to download and configure a dual-component system, comprising both
-a daemon and control plane (server). After downloading the daemon and control
-plane applications, the CLI application provides a wizard like interface that
-walks the user through the daemon configuration process. After downloading and
-configuring the daemon, the CLI can start both the daemon and control plane
-processes.  Additionally, you can use the CLI application to install the daemon
-as a service.
+Mycelial, the edge data movement platform. 
+
+At it's core, the CLI application enables users to:
+* Download and configure the daemon
+* Download and configure the control-plane
+* Start, destroy and clean the daemons and control plane
+* Install the daemon as a service.
 
 ## Installation
-
 
 Install the Mycelial CLI for your system.
 

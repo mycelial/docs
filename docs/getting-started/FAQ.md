@@ -7,7 +7,7 @@ sidebar_position: 4
 <details>
   <summary>What do I need to get started using Mycelial?</summary>
 
-  You can use Mycelial today and you don't even need to create an account.
+  You can use Mycelial today, it's available at [`https://app.mycelial.com`](https://app.mycelial.com).
   Follow this [tutorial](./tutorial.md) to start using Mycelial right now.
 
 </details>
@@ -50,7 +50,7 @@ install the daemon near the source/destination, using our CLI.
 
 The Mycelial control plane is a server that orchestrates data workflow jobs.
 You can either install the control plane on one of your servers, using our CLI
-or you can use our cloud-based control plane (coming soon). 
+or you can use our cloud-based control plane found at [`https://app.mycelial.com`](https://app.mycelial.com). 
 
 </details>
 

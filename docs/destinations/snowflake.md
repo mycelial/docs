@@ -79,49 +79,13 @@ You will need to have the Mycelial CLI installed. Refer to the
 [CLI](../getting-started/CLI.md) documentation for instructions on how to
 install the Mycelial CLI.
 
-### Creating a new `config.toml` file
+### Create a new `config.toml` file or add to an existing one
 
-If you are creating a new `config.toml` file, you can use the Mycelial CLI to
-generate the file and add the Postgres destination. To do this, run the
-following command:
+If you are creating a new `config.toml` file, you can use the Mycelial CLI [`init`](../getting-started/CLI#initialization) command to generate the file and add the source. 
 
-```sh
-mycelial init --local
-```
+If you are adding to an existing config file you can use the Mycelial CLI [`add`](../getting-started/CLI#adding-new-sourcesdestinations) command to add the source to the existing config. 
 
-Running the above command will download both the [Control
-plane](../core-concepts/Control-Plane) and the
-[Daemon](../core-concepts/Daemon.md) and it will ask you a series of questions
-to generate the `config.toml` file.
-
-When prompted for the `Daemon Name:` press return (⏎) to accept the default
-value or enter a name for your daemon and press return (⏎).
-
-```sh
-? Daemon Name: (My Daemon)› ⏎
-```
-
-When prompted for the `Daemon ID:` press return (⏎) to accept the default value
-or enter a daemon ID and press return (⏎).
-
-```sh
-? Daemon ID: (daemon)› ⏎
-```
-
-When prompted for the `Control Plane:` press return (⏎) to accept the default value or
-enter the URL of the control plane and press return (⏎). If you are just trying
-out Mycelial, you should press return (⏎) to accept the default value.
-
-```sh
-? Control Plane: (http://localhost:7777) › ⏎
-```
-
-When prompted for the `Security Token:` enter a token and press return (⏎). If 
-you are just trying out Mycelial, enter `token` and press return (⏎).
-
-```sh
-? Security Token: › token ⏎
-```
+### Choose source config options
 
 When prompted with `What would you like to do?`, press the down arrow to
 highlight `Add Destination` and press return (⏎).
@@ -134,13 +98,13 @@ highlight `Add Destination` and press return (⏎).
 ```
 
 When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only Postgres destination` and press return (⏎).
+down arrow to highlight `Postgres destination` and press return (⏎).
 
 ```sh
 ? What type of destination would you like to add? ›
-  Append only SQLite destination
-  Append only Postgres destination 
-  Append only MySQL destination
+  SQLite destination
+  Postgres destination 
+  MySQL destination
 ❯ Kafka destination ⏎
   Snowflake destination
   File destination
@@ -217,107 +181,7 @@ highlight `Exit` and press return (⏎).
 ❯ Exit
 ```
 
-After exiting the CLI will generate a `config.toml`.
-
-### Appending to an existing `config.toml` file
-
-If you already have a `config.toml` file, you can use the Mycelial CLI to add
-the Postgres destination. To do this, run the following command from the same
-directory as the `config.toml` file:
-
-```sh
-mycelial add --destination
-```
-
-When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Append only Postgres destination` and press return (⏎).
-
-```sh
-? What type of destination would you like to add? ›
-  Append only SQLite destination
-  Append only Postgres destination 
-  Append only MySQL destination
-  Kafka destination
-❯ Snowflake destination ⏎
-  File destination
-  Exit
-```
-
-When prompted for the `Display Name:` press return (⏎) to accept the default or
-enter a display name for your destination and press return (⏎).
-
-```sh
-? Display name: (Snowflake Destination) ›
-```
-
-When prompted for the `Snowflake username:` enter the username for the Snowflake
-account you wish to use.
-
-```sh
-? Snowflake username: › snowflake_user ⏎
-```
-
-When prompted for the `Snowflake password:` enter the password for the Snowflake
-account you wish to use.
-
-```sh
-? Snowflake password: › password ⏎
-```
-
-When prompted for the `Snowflake role:` enter the role for the Snowflake account
-you wish to use.
-
-```sh
-? Snowflake role: ACCOUNTADMIN ⏎
-```
-
-When prompted for the `Snowflake account name:` enter the account name for the
-Snowflake account you wish to use.
-
-```
-? Snowflake account name: › account123 ⏎
-```
-
-When prompted for the `Snowflake orgnization name:` enter the organization name
-for the Snowflake account you wish to use.
-
-```sh
-? Snowflake organization name: › myorg ⏎
-```
-
-When prompted for the `Snowflake warehouse:` enter the warehouse you wish to use.
-
-```sh
-? Snowflake warehouse: › COMPUTE_WH ⏎
-```
-
-When prompted for the `Database name:` enter the database you wish to use.
-
-```sh
-? Database name: › mydb ⏎
-```
-
-When prompted for the `Schema:` enter the schema you wish to use.
-
-```sh
-? Schema: › PUBLIC ⏎
-```
-
-When prompted with `What type of destination would you like to add?`, press the
-down arrow to highlight `Exit` and press return (⏎).
-
-```sh
-? What type of destination would you like to add? ›
-  Append only SQLite destination
-  Append only Postgres destination
-  Append only MySQL destination
-  Kafka destination
-  Snowflake destination
-  File destination
-❯ Exit ⏎
-```
-
-After exiting the CLI will save the modified `config.toml`.
+After exiting the CLI will generate or save the modified `config.toml`.
 
 ## Usage
 
