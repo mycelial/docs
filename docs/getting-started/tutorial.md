@@ -170,7 +170,7 @@ Exit out of the `psql` application with the following command:
 \q
 ```
 
-## Create an Account in the Mycelial App
+## Create an Account with Mycelial
 
 Go to [`https://app.mycelial.com`](https://app.mycelial.com) and create an account.
 
