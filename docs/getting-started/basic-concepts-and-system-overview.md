@@ -33,7 +33,7 @@ The daemons serve as the primary agents in Mycelial, tasked with extracting data
 
 The Control Plane is responsible for creating and managing the data workflows that will be executed by the Daemons. This entails connecting data sources to their respective destinations. 
 
-- **Hosting Flexibility:** Mycelial provides versatility in terms of Control Plane hosting, allowing users the choice between utilizing a Mycelial-provided Control Plane (coming soon) or deploying it on their own infrastructure.
+- **Hosting Flexibility:** Mycelial provides versatility in terms of Control Plane hosting, allowing users the choice between utilizing a Mycelial-provided Control Plane with the [SaaS App](https://app.mycelial.com) or deploying it on their own infrastructure.
 
 ### Configuration of Daemons
 

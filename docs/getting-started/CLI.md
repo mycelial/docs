@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 id: CLI
 title: Command Line Interface (CLI)
 ---
@@ -7,17 +7,15 @@ title: Command Line Interface (CLI)
 # Mycelial Command Line Interface (CLI)
 
 The CLI application is designed to ease the process of setting up and using
-Mycelial, the edge data movement platform. At it's core, the CLI application
-enables users to download and configure a dual-component system, comprising both
-a daemon and control plane (server). After downloading the daemon and control
-plane applications, the CLI application provides a wizard like interface that
-walks the user through the daemon configuration process. After downloading and
-configuring the daemon, the CLI can start both the daemon and control plane
-processes.  Additionally, you can use the CLI application to install the daemon
-as a service.
+Mycelial, the edge data movement platform. 
+
+At it's core, the CLI application enables users to:
+* Download and configure the daemon
+* Download and configure the control-plane
+* Start, destroy and clean the daemons and control plane
+* Install the daemon as a service.
 
 ## Installation
-
 
 Install the Mycelial CLI for your system.
 
@@ -127,7 +125,7 @@ mycelial init --config my_config.toml
 
 Note: if you use a custom config file name (ex. `my_config.toml`), you'll need
 to pass the `--config` flag along with your custom config file name to
-subsequent CLI commands.
+subsequent CLI commands (`start` in particular).
 
 ## Starting
 
@@ -145,7 +143,7 @@ it to the start command like this: `mycelial start --config ./my_config.toml`
 When prompted for a token, use the one you used in the `init` step.
 
 After completing this step, you should be able to open the web interface 
-`http://localhost:7777`.
+`http://localhost:7777` if running the control plane locally.
 
 ## Shutdown
 
